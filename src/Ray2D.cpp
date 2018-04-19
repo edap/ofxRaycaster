@@ -32,7 +32,7 @@ void ofxraycaster::Ray2D::draw(float radius){
     ofPopStyle();
 }
 
-void ofxraycaster::Ray2D::intersectsPolyline(ofPolyline poly, bool& intersects, float& distance) {
+void ofxraycaster::Ray2D::intersectsPolyline(const ofPolyline& poly, bool& intersects, float& distance) {
 
 }
 

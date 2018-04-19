@@ -15,7 +15,7 @@ public:
     void draw(float radius = 20.);
     void intersectsPlane(ofxraycaster::Plane plane, glm::vec2& intersection, bool& intersects);
     void intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects);
-    void intersectsPolyline(ofPolyline& poly, bool& intersects, float& distance);
+    void intersectsPolyline(const ofPolyline& poly, bool& intersects, float& distance);
 
 private:
     glm::vec2 origin;
