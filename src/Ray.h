@@ -5,17 +5,20 @@
 namespace ofxraycaster {
 
 template<class T>
-
 class Ray {
 public:
     Ray(){};
-
-// generic methods
+    Ray(T _origin, T _direction){
+        origin = _origin;
+        direction = glm::normalize(_direction);
+    };
 
     void setup(T _origin, T _direction){
         origin = _origin;
         direction = glm::normalize(_direction);
     };
+
+    // generic methods
 
     T getOrigin() const {
         return origin;
@@ -33,6 +36,14 @@ public:
         direction = _direction;
     };
 
+    // Returns the linear-interpolation from the ray origin along its direction vector where t is in the range from 0 to infinite.
+    T lerp(const float t) const {
+        auto result = direction;
+        result *= t;
+        result += origin;
+        return result;
+    }
+
     void draw(float radius = 20.){
         ofPushStyle();
         // draw origin
@@ -48,38 +59,9 @@ public:
         ofPopStyle();
     };
 
-
-
-// 2D methods
-    template<>
-    // https://gamedev.stackexchange.com/questions/109420/ray-segment-intersection
-    void intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects){
-        intersects = false;
-        //(x, y, dx, dy, x1, y1, x2, y2);
-        float x = origin.x;
-        float y = origin.y;
-        float dx = direction.x;
-        float dy = direction.y;
-
-        float r, s, denom;
-        //Make sure the lines aren't parallel, can use an epsilon here instead
-        // Division by zero in C# at run-time is infinity. In JS it's NaN
-        if (dy / dx != (b.y - a.y) / (b.x - a.x)){
-            denom = ((dx * (b.y - a.y)) - dy * (b.x - a.x));
-            if (denom != 0) {
-                r = (((y - a.y) * (b.x - a.x)) - (x - a.x) * (b.y - a.y)) / denom;
-                s = (((y - a.y) * dx) - (x - a.x) * dy) / denom;
-                if (r >= 0 && s >= 0 && s <= 1) {
-                    intersects = true;
-                    intersection.x = x + r * dx;
-                    intersection.y = y + r * dy;
-                    //return { x: x + r * dx, y: y + r * dy };
-                }
-            }
-        }
-    };
-
-// 3D methods
+    // 2D specific methods
+    void intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects);
+    void intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, bool& intersects);
 
 private:
     T origin;
@@ -87,3 +69,4 @@ private:
 };
 
 }// end namespace
+
