@@ -26,7 +26,6 @@ void ofxraycaster::Ray<glm::vec2>::intersectsSegmentDistance(glm::vec2 a, glm::v
 };
 
 template<>
-
 // https://gamedev.stackexchange.com/questions/109420/ray-segment-intersection
 void ofxraycaster::Ray<glm::vec2>::intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects){
     intersects = false;
@@ -42,17 +41,15 @@ void ofxraycaster::Ray<glm::vec2>::intersectsSegment(glm::vec2 a, glm::vec2 b, g
 
 
 template<>
-void ofxraycaster::Ray<glm::vec2>::intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, bool& intersects){
+void ofxraycaster::Ray<glm::vec2>::intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, glm::vec2& surfaceNormal, bool& intersects){
 
     vector<glm::vec3> container = poly.getVertices();
     float distance = std::numeric_limits<float>::infinity();
     for (int i = 0; i < container.size(); i++) {
         cout << distance << endl;
 
+        // qui in realta' dovresti chiudere solo se la poly e' closed.
         auto endSegmentIndex = container.size() == (i + 1) ? 0 : i + 1;
-        cout << "qui" << endl;
-        cout << i << endl;
-        cout << endSegmentIndex << endl;
 
         float tmpDistance = distance;
         bool tmpIntersect = false;
@@ -61,6 +58,10 @@ void ofxraycaster::Ray<glm::vec2>::intersectsPolyline(const ofPolyline& poly, gl
         if (tmpIntersect) {
             if (intersects == false) { intersects = true; };
             if (tmpDistance < distance) {
+                // we first find the direction of the segment.
+                glm::vec2 segmentDir = glm::normalize(container[i] - container[endSegmentIndex]);
+                // and then we use as normal a vector orthogonal to direction.
+                surfaceNormal = glm::vec2(segmentDir.y, -segmentDir.x);
                 distance = tmpDistance;
             }
         }

@@ -62,7 +62,7 @@ public:
     // 2D specific methods
     void intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects);
     void intersectsSegmentDistance(glm::vec2 a, glm::vec2 b, float& distance, bool& intersects);
-    void intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, bool& intersects);
+    void intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, glm::vec2& surfaceNormal, bool& intersects);
 
 private:
     T origin;
