@@ -46,7 +46,6 @@ void ofxraycaster::Ray<glm::vec2>::intersectsPolyline(const ofPolyline& poly, gl
     vector<glm::vec3> container = poly.getVertices();
     float distance = std::numeric_limits<float>::infinity();
     for (int i = 0; i < container.size(); i++) {
-        cout << distance << endl;
 
         // qui in realta' dovresti chiudere solo se la poly e' closed.
         auto endSegmentIndex = container.size() == (i + 1) ? 0 : i + 1;
