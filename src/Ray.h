@@ -45,7 +45,7 @@ public:
         return result;
     }
 
-    void intersectsPlane(Plane plane, T& intersection, bool& intersects){
+    void intersectsPlane(ofxraycaster::Plane<T> plane, T& intersection, bool& intersects){
         float distance;
         intersects = glm::intersectRayPlane(origin, direction,
                                             plane.getOrigin(), plane.getNormal(),
@@ -135,9 +135,6 @@ public:
             intersection.y = origin.y + distance * direction.y;
         }
     };
-
-    template<class V = T>
-    typename std::enable_if<std::is_same<glm::vec2, V>::value || std::is_same<ofVec2f, V>::value, void>::type
 
 private:
     T origin;
