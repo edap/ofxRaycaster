@@ -21,7 +21,7 @@ void ofxraycaster::Ray2D::draw(float radius){
     ofPushStyle();
     // draw origin
     ofSetColor(255, 0, 0);
-    ofDrawSphere(origin.x, origin.y, radius);
+    ofDrawCircle(origin.x, origin.y, radius);
 
     // draw direction
     ofSetColor(0,0,255);
