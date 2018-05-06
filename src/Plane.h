@@ -41,7 +41,6 @@ private:
     T orig;
     T normal;
 
-
 };
 
 }// end namespace

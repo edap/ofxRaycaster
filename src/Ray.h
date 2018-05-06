@@ -45,21 +45,17 @@ public:
         return result;
     }
 
-    void intersectsPlane(ofxraycaster::Plane<T> plane, T& intersection, bool& intersects){
-        float distance;
-        intersects = glm::intersectRayPlane(origin, direction,
+    bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance){
+        return glm::intersectRayPlane(origin, direction,
                                             plane.getOrigin(), plane.getNormal(),
                                             distance);
-        if (intersects) {
-            intersection = origin + direction*distance;
-        }
     };
 
 
     // 2D METHODS. They are available only if the ray is a 2D ray //////////////
     template<class V = T>
     typename std::enable_if<std::is_same<glm::vec2, V>::value || std::is_same<ofVec2f, V>::value, void>::type
-    intersectsSegmentDistance(glm::vec2 a, glm::vec2 b, float& distance, bool& intersects){
+    intersectsSegmentDistance(const glm::vec2 & a, const glm::vec2 & b, float & distance, bool & intersects){
         intersects = false;
 
         float x = origin.x;
@@ -85,7 +81,7 @@ public:
     template<class V = T>
     typename std::enable_if<std::is_same<glm::vec2, V>::value || std::is_same<ofVec2f, V>::value, void>::type
     // https://gamedev.stackexchange.com/questions/109420/ray-segment-intersection
-    intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool& intersects){
+    intersectsSegment(glm::vec2 a, glm::vec2 b, glm::vec2& intersection, bool & intersects){
         intersects = false;
 
         float distance = 0;
@@ -99,7 +95,7 @@ public:
 
     template<class V = T>
     typename std::enable_if<std::is_same<glm::vec2, V>::value || std::is_same<ofVec2f, V>::value, void>::type
-    intersectsPolyline(const ofPolyline& poly, glm::vec2& intersection, glm::vec2& surfaceNormal, bool& intersects){
+    intersectsPolyline(const ofPolyline & poly, glm::vec2 & intersection, glm::vec2& surfaceNormal, bool & intersects){
 
         vector<glm::vec3> container = poly.getVertices();
         float distance = std::numeric_limits<float>::infinity();
@@ -135,6 +131,65 @@ public:
             intersection.y = origin.y + distance * direction.y;
         }
     };
+
+    // 3D Methods
+    template<class V = T>
+    typename std::enable_if<std::is_same<glm::vec3, V>::value || std::is_same<ofVec3f, V>::value, bool>::type
+    intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition){
+
+        return glm::intersectRayTriangle(origin, direction, vert0, vert1, vert2, baryPosition);
+    }
+
+    // 3D Methods
+    template<class V = T>
+    typename std::enable_if<std::is_same<glm::vec3, V>::value || std::is_same<ofVec3f, V>::value, bool>::type
+    intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal){
+
+        return glm::intersectRaySphere(origin, direction, _center, _radius, _position, _normal);
+
+
+    }
+
+    template<class V = T>
+    typename std::enable_if<std::is_same<glm::vec3, V>::value || std::is_same<ofVec3f, V>::value, glm::vec3>::type
+    getPointOnTriangle(const glm::vec3 & _baryPosition) const {
+        return origin + (direction * _baryPosition.z);
+    };
+
+    template<class V = T>
+    typename std::enable_if<std::is_same<glm::vec3, V>::value || std::is_same<ofVec3f, V>::value, bool>::type
+    intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & intPosition, glm::vec3 & intNormal, ofColor & color) {
+        // at the beginning, no intersection is found and the distance to the closest surface
+        // is set to an high value;
+        bool found = false;
+        float distanceToTheClosestSurface = numeric_limits<float>::max();
+
+        for (const ofMeshFace& face : primitive.getMesh().getUniqueFaces()) {
+            glm::vec3 baricenter;
+            bool intersection = glm::intersectRayTriangle(
+                                                          origin, direction,
+                                                          glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(0), 1.f)),
+                                                          glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(1), 1.f)),
+                                                          glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(2), 1.f)),
+                                                          baricenter);
+            // when an intersection is found, it updates the distanceToTheClosestSurface value
+            // this value is used to order the new intersections, if a new intersection with a smaller baricenter.z
+            // value is found, this one will become the new intersection
+            if (intersection) {
+                if (baricenter.z < distanceToTheClosestSurface) {
+                    found = true;
+                    if(face.hasColors()){
+                        color = face.getColor(1);
+                    };
+                    distanceToTheClosestSurface = baricenter.z;
+                    intNormal = face.getFaceNormal();
+                    intPosition = getPointOnTriangle(baricenter);
+                }
+            }
+        }
+        return found;
+    };
+
 
 private:
     T origin;
