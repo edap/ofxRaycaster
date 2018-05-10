@@ -129,3 +129,39 @@ if (ray.intersectsSegment(a, b, distance)) {
 }
 ```
 
+## 3D intersection methods:
+
+See `example-3D`
+
+#### intersectsTriangle
+
+It checks for the intersection between a ray and a triangle.
+
+```cpp
+bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition)
+```
+
+
+#### intersectsSphere
+
+It checks for the intersection between a ray and a sphere.
+
+```cpp
+bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal)
+```
+
+#### intersectsPrimitive
+
+It checks for the intersection between a ray and an `ofPrimitive`.
+
+```cpp
+bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal)
+```
+
+#### intersectsPlane
+
+It checks for the intersection between a ray and an `ofxraycaster::Plane<glm::vec3>`.
+
+```cpp
+bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance);
+```
