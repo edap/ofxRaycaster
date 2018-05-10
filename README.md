@@ -23,6 +23,8 @@ ofxraycaster::Ray<glm::vec3> ray;
 
 ## Generic methods, valid both for 2D and 3D rays:
 
+#### setup
+
 ```cpp
 void setup(T _origin, T _direction)
 ```
@@ -32,6 +34,7 @@ it set the origin and direction of a ray. For example, for a 2D ray:
 ray.setup(glm::vec2(10,5), glm::vec2(1,0));
 ```
 
+#### getOrigin
 
 ```cpp
 T getOrigin();
@@ -41,27 +44,33 @@ It returns the origin of the vector. For example, for the 2D ray previously grea
 ray.getOrigin(); // returns glm::vec2(10,5)
 ```
 
+#### getDirection
+
 ```cpp
 T getDirection();
 ```
 It returns the direction of the vector. For example, for the 2D ray previously greated:
 ```cpp
-ray.getOrigin(); // returns glm::vec2(1,0)
+ray.getDirection(); // returns glm::vec2(1,0)
 ```
+
+#### setOrigin
 
 ```cpp
 void setOrigin(T _origin);
 ```
 
-It set the origin of the ray;
+It sets the origin of the ray;
 
+#### setDirection
 
 ```cpp
 void setDirection(T _origin);
 ```
 
-It set the direction of the ray;
+It sets the direction of the ray;
 
+#### draw
 
 ```cpp
 void draw(float radius = 20.);
@@ -72,7 +81,7 @@ It draws a red circle indicating the position and a blue line indicating the dir
 
         
 
-## 3D intersection methods:
+## 2D intersection methods:
 
 
 
