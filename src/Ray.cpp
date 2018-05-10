@@ -3,38 +3,42 @@
 // In this file there are only template specialization
 
 /////////////////////////2D Methods specialization ////////////
-template<>
-void ofxraycaster::Ray<glm::vec2>::draw(float radius){
-    ofPushStyle();
-    // draw origin
-    ofSetColor(255, 0, 0);
-    ofDrawCircle(origin, radius);
+namespace ofxraycaster {
 
-    // draw direction
-    ofSetColor(0,0,255);
-    auto end = origin + (direction * (radius*4.));
-    ofSetLineWidth(3);
-    ofDrawLine(origin,end);
-    ofSetLineWidth(1);
-    ofPopStyle();
-};
+    template<>
+    void Ray<glm::vec2>::draw(float radius){
+        ofPushStyle();
+        // draw origin
+        ofSetColor(255, 0, 0);
+        ofDrawCircle(origin, radius);
 
-/////////////////////////3D Methods specialization ////////////
-template<>
-void ofxraycaster::Ray<glm::vec3>::draw(float radius){
-    ofPushStyle();
-    // draw origin
-    ofSetColor(255, 0, 0);
-    ofDrawSphere(origin, radius);
+        // draw direction
+        ofSetColor(0,0,255);
+        auto end = origin + (direction * (radius*4.));
+        ofSetLineWidth(3);
+        ofDrawLine(origin,end);
+        ofSetLineWidth(1);
+        ofPopStyle();
+    }
 
-    // draw direction
-    ofSetColor(0,0,255);
-    auto end = origin + (direction * (radius*4.));
-    ofSetLineWidth(3);
-    ofDrawLine(origin,end);
-    ofSetLineWidth(1);
-    ofPopStyle();
-};
+    /////////////////////////3D Methods specialization ////////////
+    template<>
+    void Ray<glm::vec3>::draw(float radius){
+        ofPushStyle();
+        // draw origin
+        ofSetColor(255, 0, 0);
+        ofDrawSphere(origin, radius);
+
+        // draw direction
+        ofSetColor(0,0,255);
+        auto end = origin + (direction * (radius*4.));
+        ofSetLineWidth(3);
+        ofDrawLine(origin,end);
+        ofSetLineWidth(1);
+        ofPopStyle();
+    }
+}
+
 
 
 

@@ -2,6 +2,7 @@
 *.xcuserstate
 *.xcscmblueprint
 */bin/*
+*.app
 !*/bin/data
 */obj
 RemoteSystemsTempFiles/

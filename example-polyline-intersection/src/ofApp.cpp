@@ -8,7 +8,7 @@ void ofApp::setup(){
     poly.addVertex(800, 600);
     poly.addVertex(400, 600);
     poly.close();
-    poly.rotate(45, glm::vec3(0,0,1));
+    poly.rotateDeg(45, glm::vec3(0,0,1));
     poly.translate(glm::vec2(500, -250));
 
 }
@@ -30,16 +30,17 @@ void ofApp::draw(){
     ray.draw();
 
     glm::vec2 surfaceNormal; // store the intersection value
-    glm::vec2 intersection; // store the intersection value
-    bool intersects; // store a boolean to check if there is an intersection
+    float distance; // store the intersection value
+    bool intersects = ray.intersectsPolyline(poly, distance, surfaceNormal);
+    glm::vec2 intersection;
 
-    ray.intersectsPolyline(poly, intersection, surfaceNormal, intersects);
 
         ofPushStyle();
         // is there an intersection between the plane and the ray?
         if (intersects) {
             // draw the ray that hit the plane
             ofSetColor(100,0,100);
+            intersection = ray.getOrigin() + ray.getDirection() * distance;
             ofDrawLine(ray.getOrigin(), intersection);
 
             // draw intersection
