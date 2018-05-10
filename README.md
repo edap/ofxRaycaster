@@ -90,7 +90,7 @@ See example `example-polyline-intersection`
 bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal);
 ```
 
-It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in the variable `distance` and `surfaceNormal` the distance from the origin to the intersection point and a 2D normal of the segment of the polyline hitten by the ray.
+It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in the variable `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hitten by the ray.
 
 ```cpp
 ofxraycaster::Ray<glm::vec2> ray;
@@ -105,6 +105,27 @@ if (ray.intersectsPolyline(poly, distance, surfaceNormal)) {
 }
 ```
 
+#### intersectsSegment
+See example `example-segment-intersection`
+
+```cpp
+bool intersectsSegment(const glm::vec2 & a, const glm::vec2 & b, float & distance)
+```
+
+It checks for the intersection between a ray and a segment. If there is an intersection, it stores in the variable `distance` the distance from the origin to the intersection point.
 
 
+```cpp
+ofxraycaster::Ray<glm::vec2> ray;
+auto a = glm::vec2(10, 30);
+auto b = glm::vec2(50, 50);
+// the segment goes from point a to point b
+
+float distance; // store the intersection value
+
+if (ray.intersectsSegment(a, b, distance)) {
+    glm::vec2 intersection = ray.getOrigin() + ray.getDirection() * distance;
+    ofDrawLine(ray.getOrigin(), intersection);
+}
+```
 
