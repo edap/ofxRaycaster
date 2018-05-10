@@ -1,7 +1,7 @@
 # ofxRaycaster
 WIP raycaster
 
-This addon contain a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
+This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
 
 ## How to use it:
 Download this addon in you `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
@@ -21,7 +21,7 @@ If you want to get your hands dirty with 3D rays, use instead of a 2D ray, a 3D 
 ofxraycaster::Ray<glm::vec3> ray;
 ```
 
-## Generic methods, valid both for 2D and 3D rays:
+## Generic methods, for both 2D and 3D rays:
 
 #### setup
 
