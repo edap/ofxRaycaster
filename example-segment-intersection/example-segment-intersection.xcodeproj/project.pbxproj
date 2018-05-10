@@ -46,43 +46,6 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>38DCD9584C3EE2F33D5015B8</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Ray2D.h</string>
-				<key>path</key>
-				<string>../../../addons/ofxRaycaster/src/Ray2D.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>9E417890FB87FB44EC1F722E</key>
-			<dict>
-				<key>fileRef</key>
-				<string>C279B1B7A03064A24CB0B015</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>C279B1B7A03064A24CB0B015</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Ray2D.cpp</string>
-				<key>path</key>
-				<string>../../../addons/ofxRaycaster/src/Ray2D.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
 			<key>374689C96B06B65567A529B2</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -166,8 +129,6 @@
 					<string>27C3552F36B99BE6B862B581</string>
 					<string>3D75AF7B57C3F8538FF7BE7C</string>
 					<string>374689C96B06B65567A529B2</string>
-					<string>C279B1B7A03064A24CB0B015</string>
-					<string>38DCD9584C3EE2F33D5015B8</string>
 					<string>832EA135EFDB07525C920C4A</string>
 					<string>0657D26A3C173C9DF33498C3</string>
 				</array>
@@ -405,7 +366,9 @@ fi
 					<key>COPY_PHASE_STRIP</key>
 					<string>YES</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<string>$(inherited)</string>
+					<array>
+						<string>$(inherited)</string>
+					</array>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
 					<string>YES</string>
 					<key>GCC_MODEL_TUNING</key>
@@ -712,7 +675,6 @@ fi
 					<string>E4B69E210A3A1BDC003C02F2</string>
 					<string>D1B1E76F973C3C626489910B</string>
 					<string>C98A220809CE7318CE05DA55</string>
-					<string>9E417890FB87FB44EC1F722E</string>
 					<string>8BC4DA9B667DC373A2BF4727</string>
 				</array>
 				<key>isa</key>
@@ -807,7 +769,9 @@ fi
 					<key>COPY_PHASE_STRIP</key>
 					<string>NO</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<string>$(inherited)</string>
+					<array>
+						<string>$(inherited)</string>
+					</array>
 					<key>GCC_DYNAMIC_NO_PIC</key>
 					<string>NO</string>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
@@ -851,7 +815,9 @@ fi
 					<key>COPY_PHASE_STRIP</key>
 					<string>YES</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<string>$(inherited)</string>
+					<array>
+						<string>$(inherited)</string>
+					</array>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
 					<string>YES</string>
 					<key>GCC_MODEL_TUNING</key>

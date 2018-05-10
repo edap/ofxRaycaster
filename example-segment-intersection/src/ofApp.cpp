@@ -17,15 +17,16 @@ void ofApp::draw(){
     ray.draw();
     ofDrawLine(p1, p2);
 
-    glm::vec2 intersection; // store the intersection value
-    bool intersects; // store a boolean to check if there is an intersection
+    float distance; // store the distance value
+    glm::vec2 intersection;
+    bool intersects = ray.intersectsSegment(p1, p2, distance);
 
-    ray.intersectsSegment(p1, p2, intersection, intersects);
     ofPushStyle();
     // is there an intersection between the segment and the ray?
     if (intersects) {
         // draw the ray that hit the segment
         ofSetColor(100, 0, 100);
+        intersection = ray.getOrigin() + ray.getDirection() * distance;
         ofDrawLine(ray.getOrigin(), intersection);
         // draw the reflection
         // https://glm.g-truc.net/0.9.4/api/a00131.html
