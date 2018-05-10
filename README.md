@@ -28,7 +28,7 @@ ofxraycaster::Ray<glm::vec3> ray;
 ```cpp
 void setup(T _origin, T _direction)
 ```
-it set the origin and direction of a ray. For example, for a 2D ray:
+it sets the origin and direction of a ray. For example, for a 2D ray:
 
 ```
 ray.setup(glm::vec2(10,5), glm::vec2(1,0));
@@ -90,7 +90,7 @@ See example `example-polyline-intersection`
 bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal);
 ```
 
-It checks for the intersection between a ray and a polyline. If there is an intersection, it stores in the variable `distance` and `surfaceNormal` the distance from the origin to the intersection point and a 2D normal of the segment of the polyline hitten by the ray.
+It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in the variable `distance` and `surfaceNormal` the distance from the origin to the intersection point and a 2D normal of the segment of the polyline hitten by the ray.
 
 ```cpp
 ofxraycaster::Ray<glm::vec2> ray;
