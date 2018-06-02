@@ -9,7 +9,7 @@ WIP raycaster
 This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
 
 ## How to use it:
-Download this addon in you `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
+Download this addon in your `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
 In your project, add at the top of your `ofApp.h` file
 
 ```cpp
