@@ -94,7 +94,7 @@ See example `example-polyline-intersection`
 bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal);
 ```
 
-It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hitten by the ray.
+It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hit by the ray.
 
 ```cpp
 ofxraycaster::Ray<glm::vec2> ray;
