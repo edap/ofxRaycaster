@@ -1,10 +1,9 @@
 # ofxRaycaster
-WIP raycaster
-
-![img](img/screenshot.png)
 
 [![Build status](https://travis-ci.org/edap/ofxRaycaster.svg?branch=master)](https://travis-ci.org/edap/ofxRaycaster)
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
+![img](img/screenshot.png)
+
 
 This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
 
@@ -95,7 +94,7 @@ See example `example-polyline-intersection`
 bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal);
 ```
 
-It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hitten by the ray.
+It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hit by the ray.
 
 ```cpp
 ofxraycaster::Ray<glm::vec2> ray;
