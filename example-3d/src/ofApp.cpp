@@ -39,6 +39,8 @@ void ofApp::setup(){
     planePrimitive.setPosition(planeOrigin);
     planePrimitive.tiltDeg(90);
     plane.setup(planeOrigin, planeNormal);
+
+    center.rollDeg(30.0f);
     
 }
 
@@ -48,8 +50,17 @@ void ofApp::update(){
     rayDirection = glm::normalize(lookAtRay - rayOrigin);
     ray.setDirection(rayDirection);
 
-    center.panDeg(0.2);
-    center.tiltDeg(0.2);
+    if(scene == 4){
+        center.setPosition(0, 200, 0);
+        center.rollDeg(0.5f);
+    }else if(scene == 1){
+        center.truck(sin(ofGetElapsedTimef())*5);
+    }else if(scene == 2 || scene == 3){
+        center.setPosition(0, 200, 0);
+        center.panDeg(0.2);
+        center.tiltDeg(0.2);
+    }
+
 }
 
 //--------------------------------------------------------------
@@ -57,7 +68,7 @@ void ofApp::draw(){
     ofDrawBitmapString("press 1 to 4 to change the intersection modes", 10, 20);
     ofEnableDepthTest();
     camera.begin();
-    ofDrawAxis(200);
+    //ofDrawAxis(200);
 
     light.draw();
 
@@ -123,9 +134,9 @@ void ofApp::drawTriangleIntersection(){
     glm::vec3 baryCoordinates;
     ofNode v1,v2,v3;
 
-    v1.setPosition(-100, -100, 0);
-    v2.setPosition(0, 100, 0);
-    v3.setPosition(+100, -100, 0);
+    v1.setPosition(-200, -200, 0);
+    v2.setPosition(0, 200, 0);
+    v3.setPosition(+200, -200, 0);
     v1.setParent(center);
     v2.setParent(center);
     v3.setParent(center);
@@ -164,14 +175,15 @@ void ofApp::drawPrimitiveIntersection(){
     glm::vec3 baricentricCoordinates;
     glm::vec3 intNormal;
     if(ray.intersectsPrimitive(box, baricentricCoordinates, intNormal)){
+
         auto intersection = ray.getOrigin() +
             ray.getDirection() * baricentricCoordinates.z;
+
         drawLine(ray.getOrigin(), intersection, ofFloatColor::red);
         // reflected light
         auto reflLight = glm::reflect(ray.getDirection(),intNormal);
         drawLine(intersection, ray.getOrigin() + 100 * reflLight, ofFloatColor::orange);
     }
-
 };
 
 //--------------------------------------------------------------
@@ -202,54 +214,4 @@ void ofApp::drawLine(glm::vec3 a, glm::vec3 b, ofColor color){
     ofDrawLine(a, b);
     ofPopStyle();
 };
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
-}
 

@@ -160,9 +160,7 @@ namespace ofxraycaster {
             // is set to an high value;
             bool found = false;
             float distanceToTheClosestSurface = numeric_limits<float>::max();
-
             for (const ofMeshFace& face : primitive.getMesh().getUniqueFaces()) {
-                glm::vec3 baricentricCoords;
                 bool intersection = glm::intersectRayTriangle(
                                                               origin, direction,
                                                               glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(0), 1.f)),
@@ -176,10 +174,17 @@ namespace ofxraycaster {
                     if (baricentricCoords.z < distanceToTheClosestSurface) {
                         found = true;
                         distanceToTheClosestSurface = baricentricCoords.z;
-                        intNormal = face.getFaceNormal();
+
+                        intNormal = glm::normalize(
+                            glm::vec3(
+                                glm::vec4(face.getFaceNormal(), 0.0f) *
+                                primitive.getGlobalTransformMatrix()
+                            )
+                        );
                     }
                 }
             }
+            baricentricCoords.z = distanceToTheClosestSurface;
             return found;
         };
         
