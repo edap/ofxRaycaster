@@ -161,7 +161,7 @@ void ofApp::drawTriangleIntersection(){
         // reflected light
         auto triangleNormal = glm::normalize(triangleLookAt.getGlobalPosition() - center.getGlobalPosition());
         auto reflLight = glm::reflect(ray.getDirection(), triangleNormal);
-        drawLine(pos, ray.getOrigin() + 100 * reflLight, ofFloatColor::orange);
+        drawLine(pos, pos + 100 * reflLight, ofFloatColor::orange);
     }
 };
 
@@ -182,7 +182,7 @@ void ofApp::drawPrimitiveIntersection(){
         drawLine(ray.getOrigin(), intersection, ofFloatColor::red);
         // reflected light
         auto reflLight = glm::reflect(ray.getDirection(),intNormal);
-        drawLine(intersection, ray.getOrigin() + 100 * reflLight, ofFloatColor::orange);
+        drawLine(intersection, intersection + 100 * reflLight, ofFloatColor::orange);
     }
 };
 
