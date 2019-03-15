@@ -176,10 +176,8 @@ namespace ofxraycaster {
                         distanceToTheClosestSurface = baricentricCoords.z;
 
                         intNormal = glm::normalize(
-                            glm::vec3(
-                                glm::vec4(face.getFaceNormal(), 0.0f) *
-                                primitive.getGlobalTransformMatrix()
-                            )
+                           glm::vec3(primitive.getGlobalTransformMatrix() *
+                                     glm::vec4(face.getFaceNormal(), 1.0f))
                         );
                     }
                 }
