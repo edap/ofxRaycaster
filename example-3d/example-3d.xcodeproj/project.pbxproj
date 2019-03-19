@@ -10,7 +10,6 @@
 		1D59F58D21F103E21A70A708 /* Ray3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B0222CE0B1E6E45C0E56E15 /* Ray3D.cpp */; };
 		8BC4DA9B667DC373A2BF4727 /* Raycaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832EA135EFDB07525C920C4A /* Raycaster.cpp */; };
 		9E417890FB87FB44EC1F722E /* Ray2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C279B1B7A03064A24CB0B015 /* Ray2D.cpp */; };
-		C98A220809CE7318CE05DA55 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D75AF7B57C3F8538FF7BE7C /* Ray.cpp */; };
 		D1B1E76F973C3C626489910B /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A7568A21D38549FC54DA9 /* Plane.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -35,7 +34,6 @@
 		27C3552F36B99BE6B862B581 /* Plane.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Plane.h; path = ../../../addons/ofxRaycaster/src/Plane.h; sourceTree = SOURCE_ROOT; };
 		374AE946F544FB0050C3793C /* ofxRaycaster.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxRaycaster.h; path = ../../../addons/ofxRaycaster/src/ofxRaycaster.h; sourceTree = SOURCE_ROOT; };
 		38DCD9584C3EE2F33D5015B8 /* Ray2D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Ray2D.h; path = ../../../addons/ofxRaycaster/src/Ray2D.h; sourceTree = SOURCE_ROOT; };
-		3D75AF7B57C3F8538FF7BE7C /* Ray.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Ray.cpp; path = ../../../addons/ofxRaycaster/src/Ray.cpp; sourceTree = SOURCE_ROOT; };
 		5F2D6D359C1B40909AA5E157 /* Ray3D.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Ray3D.h; path = ../../../addons/ofxRaycaster/src/Ray3D.h; sourceTree = SOURCE_ROOT; };
 		832EA135EFDB07525C920C4A /* Raycaster.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Raycaster.cpp; path = ../../../addons/ofxRaycaster/src/Raycaster.cpp; sourceTree = SOURCE_ROOT; };
 		C279B1B7A03064A24CB0B015 /* Ray2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Ray2D.cpp; path = ../../../addons/ofxRaycaster/src/Ray2D.cpp; sourceTree = SOURCE_ROOT; };
@@ -261,7 +259,6 @@
 			children = (
 				1B8A7568A21D38549FC54DA9 /* Plane.cpp */,
 				27C3552F36B99BE6B862B581 /* Plane.h */,
-				3D75AF7B57C3F8538FF7BE7C /* Ray.cpp */,
 				C279B1B7A03064A24CB0B015 /* Ray2D.cpp */,
 				38DCD9584C3EE2F33D5015B8 /* Ray2D.h */,
 				1B0222CE0B1E6E45C0E56E15 /* Ray3D.cpp */,
@@ -679,7 +676,6 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				D1B1E76F973C3C626489910B /* Plane.cpp in Sources */,
-				C98A220809CE7318CE05DA55 /* Ray.cpp in Sources */,
 				9E417890FB87FB44EC1F722E /* Ray2D.cpp in Sources */,
 				1D59F58D21F103E21A70A708 /* Ray3D.cpp in Sources */,
 				8BC4DA9B667DC373A2BF4727 /* Raycaster.cpp in Sources */,
