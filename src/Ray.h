@@ -3,9 +3,9 @@
 #include "Plane.h"
 
 namespace ofxraycaster {
-    class Ray3D {
+    class Ray {
     public:
-        Ray3D(){};
+        Ray(){};
         ///
         /// \brief it creates a ray given an origin T and a direction T
         /// @param [in] _origin
@@ -14,7 +14,7 @@ namespace ofxraycaster {
         /// ofPixels p;
         /// ofLoadImage(p, "pathToImage.jpg");
         /// ~~~~
-        Ray3D(glm::vec3 _origin, glm::vec3 _direction);
+        Ray(glm::vec3 _origin, glm::vec3 _direction);
 
         /// \brief it sets the origin and direction of a ray. For example,
         /// for a 3D ray:

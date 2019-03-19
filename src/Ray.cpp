@@ -1,6 +1,6 @@
 #include "ofMain.h"
 #include "Plane.h"
-#include "Ray3D.h"
+#include "Ray.h"
 
 
 /// \brief it creates a ray given an origin T and a direction T
@@ -10,7 +10,7 @@
 /// ofPixels p;
 /// ofLoadImage(p, "pathToImage.jpg");
 /// ~~~~
-ofxraycaster::Ray3D::Ray3D(glm::vec3 _origin, glm::vec3 _direction){
+ofxraycaster::Ray::Ray(glm::vec3 _origin, glm::vec3 _direction){
     origin = _origin;
     direction = glm::normalize(_direction);
 };
@@ -22,29 +22,29 @@ ofxraycaster::Ray3D::Ray3D(glm::vec3 _origin, glm::vec3 _direction){
 /// ofxraycaster::Ray<glm::vec2> ray;
 /// ray.setup(glm::vec2(10,5), glm::vec2(1,0));
 /// ~~~~
-void ofxraycaster::Ray3D::setup(glm::vec3 _origin, glm::vec3 _direction){
+void ofxraycaster::Ray::setup(glm::vec3 _origin, glm::vec3 _direction){
     origin = _origin;
     direction = glm::normalize(_direction);
 };
 
 /// \brief it returns the origin of the ray,
-const glm::vec3 ofxraycaster::Ray3D::getOrigin() {
+const glm::vec3 ofxraycaster::Ray::getOrigin() {
     return origin;
 };
 
-void ofxraycaster::Ray3D::setOrigin(glm::vec3 _origin){
+void ofxraycaster::Ray::setOrigin(glm::vec3 _origin){
     origin = _origin;
 };
 
-const glm::vec3 ofxraycaster::Ray3D::getDirection() {
+const glm::vec3 ofxraycaster::Ray::getDirection() {
     return direction;
 };
 
-void ofxraycaster::Ray3D::setDirection(glm::vec3 _direction){
+void ofxraycaster::Ray::setDirection(glm::vec3 _direction){
     direction = _direction;
 };
 
-void ofxraycaster::Ray3D::draw(float radius){
+void ofxraycaster::Ray::draw(float radius){
     ofPushStyle();
     // draw origin
     ofSetColor(255, 0, 0);
@@ -61,26 +61,26 @@ void ofxraycaster::Ray3D::draw(float radius){
 
 
 
-bool ofxraycaster::Ray3D::intersectsPlane(ofxraycaster::Plane plane, float & distance){
+bool ofxraycaster::Ray::intersectsPlane(ofxraycaster::Plane plane, float & distance){
     return glm::intersectRayPlane(origin, direction,
                                   plane.getOrigin(), plane.getNormal(),
                                   distance);
 };
 
 
-bool ofxraycaster::Ray3D::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition){
+bool ofxraycaster::Ray::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition){
 
     return glm::intersectRayTriangle(origin, direction, vert0, vert1, vert2, baryPosition);
 }
 
-bool ofxraycaster::Ray3D::intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal){
+bool ofxraycaster::Ray::intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal){
 
     return glm::intersectRaySphere(origin, direction, _center, _radius, _position, _normal);
 
 
 }
 
-bool ofxraycaster::Ray3D::intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal) {
+bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal) {
     // at the beginning, no intersection is found and the distance to the closest surface
     // is set to an high value;
     bool found = false;

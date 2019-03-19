@@ -35,6 +35,6 @@ class ofApp : public ofBaseApp{
 
     glm::vec3 rayDirection;
     glm::vec3 rayOrigin;
-    ofxraycaster::Ray3D ray;
+    ofxraycaster::Ray ray;
     ofxraycaster::Plane plane;
 };
