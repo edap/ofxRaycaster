@@ -17,12 +17,12 @@ In your project, add at the top of your `ofApp.h` file
 Now you are ready to use rays. To get started using a 2D ray in your project, declare a `ray` variable in your `ofApp.h` header file:
 
 ```cpp
-ofxraycaster::Ray<glm::vec2> ray;
+ofxraycaster::Ray2D ray;
 ```
 
 If you want to get your hands dirty with 3D rays, use instead of a 2D ray, a 3D one.
 ```cpp
-ofxraycaster::Ray<glm::vec3> ray;
+ofxraycaster::Ray ray;
 ```
 
 ## Generic methods, for both 2D and 3D rays:
@@ -41,7 +41,7 @@ ray.setup(glm::vec2(10,5), glm::vec2(1,0));
 #### getOrigin
 
 ```cpp
-T getOrigin();
+glm::vec2 getOrigin();
 ```
 It returns the origin of the vector. For example, for the 2D ray previously greated:
 ```cpp
@@ -51,7 +51,7 @@ ray.getOrigin(); // returns glm::vec2(10,5)
 #### getDirection
 
 ```cpp
-T getDirection();
+glm::vec2 getDirection();
 ```
 It returns the direction of the vector. For example, for the 2D ray previously greated:
 ```cpp
@@ -61,7 +61,7 @@ ray.getDirection(); // returns glm::vec2(1,0)
 #### setOrigin
 
 ```cpp
-void setOrigin(T _origin);
+void setOrigin(glm::vec2 _origin);
 ```
 
 It sets the origin of the ray;
@@ -69,7 +69,7 @@ It sets the origin of the ray;
 #### setDirection
 
 ```cpp
-void setDirection(T _origin);
+void setDirection(glm::vec2 _origin);
 ```
 
 It sets the direction of the ray;
@@ -97,7 +97,7 @@ bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& su
 It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hit by the ray.
 
 ```cpp
-ofxraycaster::Ray<glm::vec2> ray;
+ofxraycaster::Ray2D ray;
 ofPolyline poly;
 
 glm::vec2 surfaceNormal; // store the intersection value
@@ -120,7 +120,7 @@ It checks for the intersection between a ray and a segment. If there is an inter
 
 
 ```cpp
-ofxraycaster::Ray<glm::vec2> ray;
+ofxraycaster::Ray2D ray;
 auto a = glm::vec2(10, 30);
 auto b = glm::vec2(50, 50);
 // the segment goes from point a to point b
@@ -164,8 +164,8 @@ bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentri
 
 #### intersectsPlane
 
-It checks for the intersection between a ray and an `ofxraycaster::Plane<glm::vec3>`.
+It checks for the intersection between a ray and an `ofxraycaster::Plane`.
 
 ```cpp
-bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance);
+bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
 ```
