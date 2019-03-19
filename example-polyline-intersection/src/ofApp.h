@@ -23,6 +23,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     void drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects);
 
-    ofxraycaster::Ray<glm::vec2> ray;
+    ofxraycaster::Ray2D ray;
     ofPolyline poly;
 };

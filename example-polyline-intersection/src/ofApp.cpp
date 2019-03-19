@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofBackground(0);
     ray.setup(glm::vec2(200, 400), glm::vec2(1, -0.5));
     poly.addVertex(400, 100);
     poly.addVertex(800, 100);
@@ -15,13 +16,12 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){;
-    float sinedTime = sin(ofGetElapsedTimef()* 0.2);
+    float sinedTime = sin(ofGetElapsedTimef()* 0.5);
     ray.setDirection(glm::vec2(1, sinedTime));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
     ofPushStyle();
     ofSetColor(ofColor(0, 255, 0));
     poly.draw();
@@ -34,20 +34,20 @@ void ofApp::draw(){
     bool intersects = ray.intersectsPolyline(poly, distance, surfaceNormal);
     glm::vec2 intersection;
 
+    ofPushStyle();
+    // is there an intersection between the plane and the ray?
+    if (intersects) {
+        // draw the ray that hit the plane
+        ofSetColor(100,0,100);
+        intersection = ray.getOrigin() + ray.getDirection() * distance;
+        ofDrawLine(ray.getOrigin(), intersection);
 
-        ofPushStyle();
-        // is there an intersection between the plane and the ray?
-        if (intersects) {
-            // draw the ray that hit the plane
-            ofSetColor(100,0,100);
-            intersection = ray.getOrigin() + ray.getDirection() * distance;
-            ofDrawLine(ray.getOrigin(), intersection);
-
-            // draw intersection
-            auto reflectDir = glm::reflect(ray.getDirection(), surfaceNormal);
-            ofDrawLine(intersection, intersection + reflectDir * ofGetWidth());
-        }
-        ofPopStyle();
+        // draw the reflected ray
+        ofSetColor(50, 100, 200);
+        auto reflectDir = glm::reflect(ray.getDirection(), surfaceNormal);
+        ofDrawLine(intersection, intersection + reflectDir * ofGetWidth());
+    }
+    ofPopStyle();
 
     drawLegend(ray.getOrigin(), intersection, intersects);
 
@@ -68,7 +68,7 @@ void ofApp::drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects
 
     if (intersects) {
         //intersection, reflected light
-        ofSetColor(100,0,100);
+        ofSetColor(255);
         ofDrawCircle(intersection, 10);
         ofDrawBitmapString("intersection point", intersection.x+30, intersection.y+10);
     }

@@ -30,7 +30,7 @@ void ofApp::draw(){
         ofDrawLine(ray.getOrigin(), intersection);
         // draw the reflection
         // https://glm.g-truc.net/0.9.4/api/a00131.html
-        ofSetColor(60, 200, 200);
+        ofSetColor(60, 255, 0);
 
         // This is wrong, there is not such a thing as a normal of a segment.
         // But we can fake it and make the segment acts as a surface reflecting
@@ -71,7 +71,7 @@ void ofApp::drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects
         ofDrawBitmapString("intersection point",
                            intersection.x + 30, intersection.y + 10);
         // reflection
-        ofSetColor(60,200,200);
+        ofSetColor(60, 255, 0);
         ofDrawBitmapString("reflected light",
                            intersection.x - 100, intersection.y - 20);
     }

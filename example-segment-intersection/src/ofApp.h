@@ -24,8 +24,7 @@ class ofApp : public ofBaseApp{
 
     void drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects);
 
-    ofxraycaster::Ray<glm::vec2> ray;
-    ofxraycaster::Plane<glm::vec2> plane;
+    ofxraycaster::Ray2D ray;
 
     glm::vec2 p1 = glm::vec2(700, 80);
     glm::vec2 p2 = glm::vec2(900, 600);

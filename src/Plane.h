@@ -3,44 +3,22 @@
 
 namespace ofxraycaster {
 
-    template<class T>
     class Plane {
     public:
         Plane(){}
-        Plane(T _orig, T _normal){
-            orig = _orig;
-            normal = _normal;
-        }
+        Plane(glm::vec3 _orig, glm::vec3 _normal);
 
         void draw(float radius = 20.);
+        void setup(glm::vec3 _orig, glm::vec3 _normal);
+        void updateNormal(glm::vec3 _normal);
+        void updateOrigin(glm::vec3 _orig);
+        const glm::vec3 getOrigin();
+        const glm::vec3 getNormal();
+        glm::vec3 arbitraryOrthogonal(const glm::vec3& vec);
 
-        void setup(T _orig, T _normal){
-            orig = _orig;
-            normal = _normal;
-        }
-
-        void updateNormal(T _normal){
-            normal = _normal;
-        }
-
-        void updateOrigin(T _orig){
-            orig = _orig;
-        }
-
-        T getOrigin() const {
-            return orig;
-        }
-
-        T getNormal() const {
-            return normal;
-        }
-        
-        
-        T arbitraryOrthogonal(const T& vec);
     private:
-        T orig;
-        T normal;
+        glm::vec3 orig;
+        glm::vec3 normal;
         
     };
-    
-}// end namespace
+}

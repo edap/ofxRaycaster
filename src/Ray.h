@@ -1,6 +1,5 @@
 #pragma once
 #include "ofMain.h"
-#include "Plane.h"
 
 namespace ofxraycaster {
 
@@ -60,11 +59,11 @@ namespace ofxraycaster {
 //            return result;
 //        }
 
-        bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance){
-            return glm::intersectRayPlane(origin, direction,
-                                          plane.getOrigin(), plane.getNormal(),
-                                          distance);
-        };
+//        bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance){
+//            return glm::intersectRayPlane(origin, direction,
+//                                          plane.getOrigin(), plane.getNormal(),
+//                                          distance);
+//        };
 
 
         // 2D METHODS. They are available only if the ray is a 2D ray //////////////
