@@ -164,8 +164,8 @@ bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentri
 
 #### intersectsPlane
 
-It checks for the intersection between a ray and an `ofxraycaster::Plane<glm::vec3>`.
+It checks for the intersection between a ray and an `ofxraycaster::Plane`.
 
 ```cpp
-bool intersectsPlane(ofxraycaster::Plane<T> plane, float & distance);
+bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
 ```
