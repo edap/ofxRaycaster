@@ -177,12 +177,15 @@ bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
 ![img](img/example-multiple-rays.png )
 
 *segment intersection*
+
 ![img](img/example-segment-intersection.png)
 
 *polyline intersection*
+
 ![img](img/example-polyline-intersection.png)
 
 *3D intersections with plane, triangle and 3D primitives*
+
 ![img](img/example-3d.png )
 
                             
