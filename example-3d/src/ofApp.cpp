@@ -2,13 +2,14 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofBackground(80, 80, 200);
+    ofBackground(col3);
     center.setPosition(0, 200, 0);
-    light.setPosition(0, 400, 400);
+    sphere.setPosition(0, 200, 0);
+    light.setPosition(200, 600, 400);
     ofSetSmoothLighting(true);
     light.setSpecularColor( ofFloatColor(1.f, 1.f, 1.f));
     light.setSpotlight();
-    light.setDiffuseColor(ofFloatColor::yellow);
+    light.setDiffuseColor(col4);
     light.tiltDeg(-45);
     light.setup();
 
@@ -26,7 +27,6 @@ void ofApp::setup(){
     //sphere
     sphere.setResolution(100);
     sphere.setRadius(sphereRadius);
-    sphere.setParent(center);
 
     //box
     box.set(sphereRadius);
@@ -41,7 +41,6 @@ void ofApp::setup(){
     plane.setup(planeOrigin, planeNormal);
 
     center.rollDeg(30.0f);
-    
 }
 
 //--------------------------------------------------------------
@@ -54,7 +53,7 @@ void ofApp::update(){
         center.setPosition(0, 200, 0);
         center.rollDeg(0.5f);
     }else if(scene == 1){
-        center.truck(sin(ofGetElapsedTimef())*5);
+        sphere.truck(sin(ofGetElapsedTimef()));
     }else if(scene == 2 || scene == 3){
         center.setPosition(0, 200, 0);
         center.panDeg(0.2);
@@ -65,27 +64,31 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofDrawBitmapString("press 1 to 4 to change the intersection modes", 10, 20);
+    ofDrawBitmapString("press 1 to 4 to change the intersection modes. Current mode: "+ mode, 10, 20);
     ofEnableDepthTest();
     camera.begin();
-    //ofDrawAxis(200);
 
     light.draw();
 
     switch(scene) {
         case 1:
+            mode = "Sphere";
             drawSphereIntersection();
             break;
         case 2:
+            mode = "Plane";
             drawPlaneIntersection();
             break;
         case 3:
+            mode = "Triangle";
             drawTriangleIntersection();
             break;
         case 4:
+            mode = "Primitive";
             drawPrimitiveIntersection();
             break;
         default:
+            mode = "Sphere";
             drawSphereIntersection();
             break;
     }
@@ -106,10 +109,10 @@ void ofApp::drawSphereIntersection(){
                              position,
                              normal)){
         // ray hits
-        drawLine(ray.getOrigin(), position, ofFloatColor::red);
+        drawLine(ray.getOrigin(), position, col1);
         // reflected light
         auto reflDir = glm::reflect(ray.getDirection(),normal);
-        drawLine(position, position + reflDir * ofGetWidth(), ofFloatColor::orange);
+        drawLine(position, position + reflDir * ofGetWidth(), col2);
     }
 };
 
@@ -123,10 +126,10 @@ void ofApp::drawPlaneIntersection(){
     if(ray.intersectsPlane(plane, distance)){
         auto position = ray.getOrigin() + ray.getDirection() * distance;
         // ray hits
-        drawLine(ray.getOrigin(), position, ofFloatColor::red);
+        drawLine(ray.getOrigin(), position, col1);
         // reflected light
         auto reflDir = glm::reflect(ray.getDirection(),planeNormal);
-        drawLine(position, position + reflDir * ofGetWidth(), ofFloatColor::orange);
+        drawLine(position, position + reflDir * ofGetWidth(), col2);
     }
 };
 
@@ -157,11 +160,11 @@ void ofApp::drawTriangleIntersection(){
 
     if(ray.intersectsTriangle(a,b,c, baryCoordinates)){
         auto pos = ray.getOrigin() + ray.getDirection() * baryCoordinates.z;
-        drawLine(ray.getOrigin(), pos, ofFloatColor::red);
+        drawLine(ray.getOrigin(), pos, col1);
         // reflected light
         auto triangleNormal = glm::normalize(triangleLookAt.getGlobalPosition() - center.getGlobalPosition());
         auto reflLight = glm::reflect(ray.getDirection(), triangleNormal);
-        drawLine(pos, pos + 100 * reflLight, ofFloatColor::orange);
+        drawLine(pos, pos + 100 * reflLight, col2);
     }
 };
 
@@ -179,10 +182,10 @@ void ofApp::drawPrimitiveIntersection(){
         auto intersection = ray.getOrigin() +
             ray.getDirection() * baricentricCoordinates.z;
 
-        drawLine(ray.getOrigin(), intersection, ofFloatColor::red);
+        drawLine(ray.getOrigin(), intersection, col1);
         // reflected light
         auto reflLight = glm::reflect(ray.getDirection(),intNormal);
-        drawLine(intersection, intersection + 100 * reflLight, ofFloatColor::orange);
+        drawLine(intersection, intersection + 100 * reflLight, col2);
     }
 };
 

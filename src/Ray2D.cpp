@@ -37,11 +37,10 @@ void ofxraycaster::Ray2D::setDirection(glm::vec2 _direction){
 void ofxraycaster::Ray2D::draw(float radius){
     ofPushStyle();
     // draw origin
-    ofSetColor(255, 0, 0);
+    ofSetColor(246,233,101);
     ofDrawCircle(origin, radius);
 
     // draw direction
-    ofSetColor(0,0,255);
     auto end = origin + (direction * (radius*4.));
     ofSetLineWidth(3);
     ofDrawLine(origin,end);

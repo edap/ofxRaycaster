@@ -1,6 +1,5 @@
 #include "ofApp.h"
 
-//--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
     ray.setup(glm::vec2(200, 400), glm::vec2(1, -0.5));
@@ -11,19 +10,16 @@ void ofApp::setup(){
     poly.close();
     poly.rotateDeg(45, glm::vec3(0,0,1));
     poly.translate(glm::vec2(500, -250));
-
 }
 
-//--------------------------------------------------------------
 void ofApp::update(){;
     float sinedTime = sin(ofGetElapsedTimef()* 0.5);
-    ray.setDirection(glm::vec2(1, sinedTime));
+    ray.setDirection(glm::normalize(glm::vec2(1, sinedTime)));
 }
 
-//--------------------------------------------------------------
 void ofApp::draw(){
     ofPushStyle();
-    ofSetColor(ofColor(0, 255, 0));
+    ofSetColor(col3);
     poly.draw();
     ofPopStyle();
 
@@ -35,97 +31,22 @@ void ofApp::draw(){
     glm::vec2 intersection;
 
     ofPushStyle();
-    // is there an intersection between the plane and the ray?
+    // is there an intersection between the polyline and the ray?
     if (intersects) {
-        // draw the ray that hit the plane
-        ofSetColor(100,0,100);
+        // draw the ray that hits the polyline
+        ofSetColor(col1);
         intersection = ray.getOrigin() + ray.getDirection() * distance;
         ofDrawLine(ray.getOrigin(), intersection);
-
-        // draw the reflected ray
-        ofSetColor(50, 100, 200);
-        auto reflectDir = glm::reflect(ray.getDirection(), surfaceNormal);
-        ofDrawLine(intersection, intersection + reflectDir * ofGetWidth());
-    }
-    ofPopStyle();
-
-    drawLegend(ray.getOrigin(), intersection, intersects);
-
-
-}
-
-
-// This method just add a description to each element of the sketch
-void ofApp::drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects){
-
-    ofPushStyle();
-    // ray
-    ofSetColor(255,0,0);
-    ofDrawBitmapString("Origin of the ray", rayOrig.x-200, rayOrig.y);
-    ofSetColor(0,0,255);
-    ofDrawBitmapString("Direction of the ray", rayOrig.x+30, rayOrig.y+10);
-
-
-    if (intersects) {
-        //intersection, reflected light
-        ofSetColor(255);
+        // draw the intersection point
+        ofSetColor(col4);
         ofDrawCircle(intersection, 10);
         ofDrawBitmapString("intersection point", intersection.x+30, intersection.y+10);
+
+        // draw the reflected ray
+        ofSetColor(col2);
+        auto reflectDir = glm::reflect(ray.getDirection(), surfaceNormal);
+        ofDrawLine(intersection, intersection + reflectDir * ofGetWidth());
+        ofDrawBitmapString("reflected light direction", intersection + reflectDir*80);
     }
     ofPopStyle();
-};
-
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-    
 }

@@ -1,28 +1,20 @@
 #pragma once
-
 #include "ofMain.h"
 #include "ofxRaycaster.h"
 
 class ofApp : public ofBaseApp{
 
-	public:
-		void setup();
-		void update();
-		void draw();
-
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
-    void drawLegend(glm::vec2 rayOrig, glm::vec2 intersection,bool intersects);
+public:
+    void setup();
+    void update();
+    void draw();
 
     ofxraycaster::Ray2D ray;
     ofPolyline poly;
+
+    ofFloatColor col1 = ofFloatColor(ofColor(246,233,101));
+    ofFloatColor col2 = ofFloatColor(ofColor(85,255,60));
+    ofFloatColor col3 = ofFloatColor(ofColor(20,164,204));
+    ofFloatColor col4 = ofFloatColor(ofColor(180,0,131));
+    ofFloatColor col5 = ofFloatColor(ofColor(0,0,0));
 };

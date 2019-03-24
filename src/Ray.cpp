@@ -47,11 +47,10 @@ void ofxraycaster::Ray::setDirection(glm::vec3 _direction){
 void ofxraycaster::Ray::draw(float radius){
     ofPushStyle();
     // draw origin
-    ofSetColor(255, 0, 0);
+    ofSetColor(246,233,101);
     ofDrawSphere(origin, radius);
 
     // draw direction
-    ofSetColor(0,0,255);
     auto end = origin + (direction * (radius*4.));
     ofSetLineWidth(3);
     ofDrawLine(origin,end);
