@@ -13,7 +13,7 @@ void ofApp::setup(){
     material.setAmbientColor(col4);
 
     rayDirection = glm::vec3(0,1,0);
-    rayOrigin = glm::vec3(0, -300, 0);
+    rayOrigin = glm::vec3(0, -150, 0);
     ray.setup(rayOrigin, rayDirection);
 
     //triangle
@@ -65,6 +65,7 @@ void ofApp::draw(){
     camera.begin();
 
     light.draw();
+    ray.draw();
 
     switch(scene) {
         case 1:
@@ -96,36 +97,45 @@ void ofApp::drawSphereIntersection(){
     sphere.draw();
     material.end();
 
-    ray.draw();
-    glm::vec3 position;
-    glm::vec3 normal;
+    glm::vec3 intersection;
+    glm::vec3 surfaceNormal;
 
     if(ray.intersectsSphere(sphere.getGlobalPosition(),
                              sphereRadius,
-                             position,
-                             normal)){
+                             intersection,
+                             surfaceNormal)){
         // ray hits
-        drawLine(ray.getOrigin(), position, col1);
+        ofPushStyle();
+        ofSetColor(col1);
+        ofDrawSphere(intersection, 5);
+        ofDrawLine(ray.getOrigin(), intersection);
         // reflected light
-        auto reflDir = glm::reflect(ray.getDirection(),normal);
-        drawLine(position, position + reflDir * ofGetWidth(), col2);
+        auto reflDir = glm::reflect(ray.getDirection(),surfaceNormal);
+        ofSetColor(col2);
+        ofDrawLine(intersection, intersection + 100 * reflDir);
+        ofPopStyle();
     }
 };
 
 void ofApp::drawPlaneIntersection(){
-    ray.draw();
     material.begin();
     planePrimitive.draw();
     material.end();
 
     float distance;
     if(ray.intersectsPlane(plane, distance)){
-        auto position = ray.getOrigin() + ray.getDirection() * distance;
+        auto intersection = ray.getOrigin() + ray.getDirection() * distance;
         // ray hits
-        drawLine(ray.getOrigin(), position, col1);
+        ofPushStyle();
+        ofSetColor(col1);
+        ofDrawSphere(intersection, 5);
+        ofDrawLine(ray.getOrigin(), intersection);
+
         // reflected light
         auto reflDir = glm::reflect(ray.getDirection(),planeNormal);
-        drawLine(position, position + reflDir * ofGetWidth(), col2);
+        ofSetColor(col2);
+        ofDrawLine(intersection, intersection + 100 * reflDir);
+        ofPopStyle();
     }
 };
 
@@ -133,9 +143,9 @@ void ofApp::drawTriangleIntersection(){
     glm::vec3 baryCoordinates;
     ofNode v1,v2,v3;
 
-    v1.setPosition(-200, -200, 0);
-    v2.setPosition(0, 200, 0);
-    v3.setPosition(+200, -200, 0);
+    v1.setPosition(-200, -100, 0);
+    v2.setPosition(0, 100, 0);
+    v3.setPosition(+200, -100, 0);
     v1.setParent(center);
     v2.setParent(center);
     v3.setParent(center);
@@ -151,37 +161,42 @@ void ofApp::drawTriangleIntersection(){
     ofDrawTriangle(a,b,c);
     //triangleLookAt.draw();
     material.end();
-    
-    ray.draw();
 
     if(ray.intersectsTriangle(a,b,c, baryCoordinates)){
-        auto pos = ray.getOrigin() + ray.getDirection() * baryCoordinates.z;
-        drawLine(ray.getOrigin(), pos, col1);
+        auto intersection = ray.getOrigin() + ray.getDirection() * baryCoordinates.z;
+        ofPushStyle();
+        ofSetColor(col1);
+        ofDrawLine(ray.getOrigin(), intersection);
         // reflected light
         auto triangleNormal = glm::normalize(triangleLookAt.getGlobalPosition() - center.getGlobalPosition());
         auto reflLight = glm::reflect(ray.getDirection(), triangleNormal);
-        drawLine(pos, pos + 100 * reflLight, col2);
+        ofSetColor(col2);
+        ofDrawLine(intersection, intersection + 100 * reflLight);
+        ofPopStyle();
     }
 };
 
 void ofApp::drawPrimitiveIntersection(){
-
     material.begin();
     box.draw();
     material.end();
-    ray.draw();
 
     glm::vec3 baricentricCoordinates;
-    glm::vec3 intNormal;
-    if(ray.intersectsPrimitive(box, baricentricCoordinates, intNormal)){
+    glm::vec3 surfaceNormal;
+    if(ray.intersectsPrimitive(box, baricentricCoordinates, surfaceNormal)){
 
         auto intersection = ray.getOrigin() +
             ray.getDirection() * baricentricCoordinates.z;
 
-        drawLine(ray.getOrigin(), intersection, col1);
+        ofPushStyle();
+        ofSetColor(col1);
+        ofDrawSphere(intersection, 5);
+        ofDrawLine(ray.getOrigin(), intersection);
         // reflected light
-        auto reflLight = glm::reflect(ray.getDirection(),intNormal);
-        drawLine(intersection, intersection + 100 * reflLight, col2);
+        auto reflLight = glm::reflect(ray.getDirection(),surfaceNormal);
+        ofSetColor(col2);
+        ofDrawLine(intersection, intersection + 100 * reflLight);
+        ofPopStyle();
     }
 };
 

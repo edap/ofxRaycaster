@@ -2,18 +2,16 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofBackground(col5);
+    ofBackground(col3);
     //center.setPosition(0, 200, 0);
     light.setPosition(0, 250, 250);
     ofSetSmoothLighting(true);
-    light.setSpecularColor( ofFloatColor(1.f, 1.f, 1.f));
     light.setSpotlight();
-    light.setDiffuseColor(col3);
+    light.setDiffuseColor(col4);
     light.tiltDeg(-45);
     light.setup();
 
-    material.setShininess( 120 );
-    material.setSpecularColor(ofColor(255, 0, 50));
+    material.setAmbientColor(col4);
     box.set(100);
 
     for(int i = 0; i< 300; i++){
@@ -68,13 +66,12 @@ void ofApp::draw(){
 
             // intersections points
             ofPushStyle();
-            ofSetColor(col4);
+            ofSetColor(col1);
             if (drawIntersections) {
                 ofDrawSphere(intersection, 3);
             }
 
             //rays
-            ofSetColor(col1);
             if (drawRays) {
                 ofDrawLine(ray.getOrigin(), intersection);
             }

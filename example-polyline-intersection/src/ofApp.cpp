@@ -1,15 +1,11 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    ofBackground(0);
+    ofBackground(col3);
     ray.setup(glm::vec2(200, 400), glm::vec2(1, -0.5));
-    poly.addVertex(400, 100);
-    poly.addVertex(800, 100);
-    poly.addVertex(800, 600);
-    poly.addVertex(400, 600);
-    poly.close();
-    poly.rotateDeg(45, glm::vec3(0,0,1));
-    poly.translate(glm::vec2(500, -250));
+
+    yoff = 0;
+    radius = 200;
 }
 
 void ofApp::update(){;
@@ -18,8 +14,21 @@ void ofApp::update(){;
 }
 
 void ofApp::draw(){
+    poly.clear();
+    xoff = 0;
+    for(float angle = 0; angle < TWO_PI; angle+= 0.1 ){
+        float newRadius = radius + ofMap(ofNoise(xoff+yoff), 0, 1, -25, 25);
+        float x = offset.x + newRadius * cos(angle);
+        float y = offset.y + newRadius * sin(angle);
+        poly.addVertex(x, y);
+
+        xoff += 0.15;
+    }
+    yoff += 0.05;
+    poly.setClosed(true);
+
     ofPushStyle();
-    ofSetColor(col3);
+    ofSetColor(col4);
     poly.draw();
     ofPopStyle();
 

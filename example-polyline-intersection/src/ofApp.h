@@ -17,4 +17,10 @@ public:
     ofFloatColor col3 = ofFloatColor(ofColor(20,164,204));
     ofFloatColor col4 = ofFloatColor(ofColor(180,0,131));
     ofFloatColor col5 = ofFloatColor(ofColor(0,0,0));
+
+    glm::vec2 offset = glm::vec2(ofGetWidth()/2, ofGetHeight()/2);
+    float angle;
+    float xoff;
+    float yoff;
+    float radius;
 };
