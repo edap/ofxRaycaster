@@ -6,15 +6,11 @@ void ofApp::setup(){
     center.setPosition(0, 200, 0);
     sphere.setPosition(0, 200, 0);
     light.setPosition(200, 600, 400);
-    ofSetSmoothLighting(true);
-    light.setSpecularColor( ofFloatColor(1.f, 1.f, 1.f));
-    light.setSpotlight();
     light.setDiffuseColor(col4);
     light.tiltDeg(-45);
     light.setup();
 
-    material.setShininess( 120 );
-    material.setSpecularColor(ofColor(255, 255, 255, 255));
+    material.setAmbientColor(col4);
 
     rayDirection = glm::vec3(0,1,0);
     rayOrigin = glm::vec3(0, -300, 0);
