@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    ray.setup(glm::vec2(200, 400), glm::vec2(1, -0.5));
+    ray.setup(glm::vec2(270, 400), glm::vec2(1, -0.5));
 }
 
 void ofApp::update(){;
@@ -10,9 +10,9 @@ void ofApp::update(){;
 }
 
 void ofApp::draw(){
-    ofBackground(col5);
+    ofBackground(col3);
     ray.draw();
-    ofSetColor(col3);
+    ofSetColor(col4);
     ofDrawLine(p1, p2);
 
     float distance; // store the distance value
@@ -30,7 +30,6 @@ void ofApp::draw(){
         // https://glm.g-truc.net/0.9.4/api/a00131.html
 
         //intersection
-        ofSetColor(col4);
         ofDrawCircle(intersection, 10);
         ofDrawBitmapString("intersection point",
                            intersection.x + 30, intersection.y + 10);
