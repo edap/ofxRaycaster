@@ -13,8 +13,7 @@ void ofxraycaster::Raycaster::set(const glm::vec3 _origin, const glm::vec3 _dire
 void ofxraycaster::Raycaster::draw(){
     ofPushStyle();
     ofSetColor(255,0,0);
-    ofDrawLine(ray.getOrigin(), ray.getOrigin() + ray.getDirection() * 10000);
-    //ofLog() << ray.getDirection();
+    ofDrawSphere(ray.getOrigin() + ray.getDirection() * 2000, 5);
     ofPopStyle();
 }
 

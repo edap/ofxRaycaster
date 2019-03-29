@@ -13,7 +13,7 @@ namespace ofxraycaster {
 
     private:
         Ray ray;
-        float near;
-        float far;
+        float near = 0;
+        float far = 0;
     };
 }

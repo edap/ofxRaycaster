@@ -42,6 +42,5 @@ namespace ofxraycaster {
         glm::vec3 origin;
         glm::vec3 direction;
     };
-    
 }
 
