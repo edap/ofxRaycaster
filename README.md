@@ -186,7 +186,11 @@ void ofApp::draw(){
     cam.begin();
     mesh.draw();
     ray.draw();
-    intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
+
+    glm::vec3 baricentricCoordinates; // it will store the barycentric coordinate of the triangle hit by the ray
+    glm::vec3 surfaceNormal; // it will store the normal of the surface hit by the ray, if any.
+    bool intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
+    
     // is there an intersection between the mesh and the ray?
     if (intersects) {
         auto intersection =
