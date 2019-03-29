@@ -6,10 +6,6 @@
 /// \brief it creates a ray given an origin T and a direction T
 /// @param [in] _origin
 /// @param [in] _direction
-/// ~~~~{.cpp}
-/// ofPixels p;
-/// ofLoadImage(p, "pathToImage.jpg");
-/// ~~~~
 ofxraycaster::Ray::Ray(glm::vec3 _origin, glm::vec3 _direction){
     origin = _origin;
     direction = glm::normalize(_direction);
