@@ -31,8 +31,7 @@ void ofApp::draw(){
 
         //intersection
         ofDrawCircle(intersection, 10);
-        ofDrawBitmapString("intersection point",
-                           intersection.x + 30, intersection.y + 10);
+        //ofDrawBitmapString("intersection point", intersection.x + 30, intersection.y + 10);
         // reflection
         ofSetColor(col2);
 
@@ -47,8 +46,7 @@ void ofApp::draw(){
         auto reflectDir = glm::reflect(ray.getDirection(), segmentSurfaceNormal);
         ofDrawLine(intersection, intersection + reflectDir * ofGetWidth());
 
-        ofDrawBitmapString("reflected light",
-                           intersection + reflectDir * 100);
+        //ofDrawBitmapString("reflected light", intersection + reflectDir * 100);
     }
     ofPopStyle();
 }
