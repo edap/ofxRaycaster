@@ -170,6 +170,20 @@ It checks for the intersection between a ray and an `ofxraycaster::Plane`.
 bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
 ```
 
+#### intersectsMesh
+
+![img](img/mesh-intersection.gif )
+
+Check the intersection between a ray and a mesh. When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. `example-mesh-intersection`
+
+```
+bool intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
+```
+
+```
+bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
+```
+
 ## Screenshots from examples
 
 *multiple rays*
