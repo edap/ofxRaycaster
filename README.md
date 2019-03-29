@@ -146,11 +146,10 @@ if (ray.intersectsSegment(a, b, distance)) {
 | ![img](img/multiple-rays.gif )   | ![img](img/mesh-intersection.gif )     | ![img](img/3D.gif )    |
 
 
-See `example-3D`
 
 #### intersectsTriangle
 
-It checks for the intersection between a ray and a triangle.
+It checks for the intersection between a ray and a triangle. See `example-3D`.
 
 ```cpp
 bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition)
@@ -159,7 +158,7 @@ bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::v
 
 #### intersectsSphere
 
-It checks for the intersection between a ray and a sphere.
+It checks for the intersection between a ray and a sphere. See `example-3D`.
 
 ```cpp
 bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal)
@@ -167,7 +166,7 @@ bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec
 
 #### intersectsPrimitive
 
-It checks for the intersection between a ray and an `ofPrimitive`.
+It checks for the intersection between a ray and an `ofPrimitive`. See `example-3D`.
 
 ```cpp
 bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal)
@@ -175,7 +174,7 @@ bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentri
 
 #### intersectsPlane
 
-It checks for the intersection between a ray and an `ofxraycaster::Plane`.
+It checks for the intersection between a ray and an `ofxraycaster::Plane`. See `example-3D`.
 
 ```cpp
 bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
@@ -198,8 +197,8 @@ void ofApp::draw(){
     mesh.draw();
     ray.draw();
 
-    glm::vec3 baricentricCoordinates; // it will store the barycentric coordinate of the triangle hit by the ray
-    glm::vec3 surfaceNormal; // it will store the normal of the surface hit by the ray, if any.
+    glm::vec3 baricentricCoordinates; // stores the barycentric coordinate of the triangle hit by the ray.
+    glm::vec3 surfaceNormal; // stores the normal of the surface hit by the ray.
     bool intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
     
     // is there an intersection between the mesh and the ray?
@@ -219,28 +218,10 @@ void ofApp::draw(){
 }
 ```
 
-When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`
+When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`.
 
 ```
 bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
 ```
-
-## Screenshots from examples
-
-*multiple rays*
-
-![img](img/example-multiple-rays.png )
-
-*segment intersection*
-
-![img](img/example-segment-intersection.png)
-
-*polyline intersection*
-
-![img](img/example-polyline-intersection.png)
-
-*3D intersections with plane, triangle and 3D primitives*
-
-![img](img/example-3d.png )
 
                             
