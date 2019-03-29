@@ -140,6 +140,12 @@ if (ray.intersectsSegment(a, b, distance)) {
 
 ## 3D intersection methods:
 
+
+| `example-multiple-rays` | `example-mesh-intersection` | `example-3D` |
+| :---:         |     :---:      |          :---: |
+| ![img](img/multiple-rays.gif )   | ![img](img/mesh-intersection.gif )     | ![img](img/3D.gif )    |
+
+
 See `example-3D`
 
 #### intersectsTriangle
