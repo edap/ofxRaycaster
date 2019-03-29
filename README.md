@@ -2,35 +2,56 @@
 
 [![Build status](https://travis-ci.org/edap/ofxRaycaster.svg?branch=master)](https://travis-ci.org/edap/ofxRaycaster)
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
+
+##### Table of Contents  
+[How to use it](#how-to)
+
+[Methods for 2D and 3D rays](#generics)
+
+[2D Intersection Methods](#2d-intersections) 
+
+[3D Intersection Methods](#3d-intersections)
+   
+
 ![img](img/screenshot.png)
 
 
-This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
+This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh.
+
+<a name="how-to"/>
 
 ## How to use it:
+
+</a>
+
 Download this addon in your `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
 In your project, add at the top of your `ofApp.h` file
 
 ```cpp
 #include "ofxRaycaster.h"
 ```
-Now you are ready to use rays. To get started using a 2D ray in your project, declare a `ray` variable in your `ofApp.h` header file:
+To get started using a 2D ray in your project, declare a `ray` variable in your `ofApp.h` header file:
 
 ```cpp
 ofxraycaster::Ray2D ray;
 ```
 
-If you want to get your hands dirty with 3D rays, use instead of a 2D ray, a 3D one.
+If you want to use a 3D ray, declare the ray like this.
+
 ```cpp
 ofxraycaster::Ray ray;
 ```
 
+<a name="generics"/>
+
 ## Generic methods, for both 2D and 3D rays:
+
+</a>
 
 #### setup
 
 ```cpp
-void setup(T _origin, T _direction)
+void setup(glm::vec2 origin, glm::vec2 direction)
 ```
 it sets the origin and direction of a ray. For example, for a 2D ray:
 
@@ -61,7 +82,7 @@ ray.getDirection(); // returns glm::vec2(1,0)
 #### setOrigin
 
 ```cpp
-void setOrigin(glm::vec2 _origin);
+void setOrigin(glm::vec3 origin);
 ```
 
 It sets the origin of the ray;
@@ -82,10 +103,12 @@ void draw(float radius = 20.);
 
 It draws a red circle indicating the position and a blue line indicating the direction, useful when debugging. It accepts a parameter to scale the dimension of the line representing the direction.
 
-
-        
+       
+<a name="2d-intersections"/>
 
 ## 2D intersection methods:
+
+</a>
 
 | `example-polyline-intersection` | `example-segment-intersection`  |
 |     :---:      |      :---:    |
@@ -138,13 +161,22 @@ if (ray.intersectsSegment(a, b, distance)) {
 }
 ```
 
+<a name="3d-intersections"/>
+
 ## 3D intersection methods:
 
-See `example-3D`
+</a>
+
+
+| `example-multiple-rays` | `example-mesh-intersection` | `example-3D` |
+| :---:         |     :---:      |          :---: |
+| ![img](img/multiple-rays.gif )   | ![img](img/mesh-intersection.gif )     | ![img](img/3D.gif )    |
+
+
 
 #### intersectsTriangle
 
-It checks for the intersection between a ray and a triangle.
+It checks for the intersection between a ray and a triangle. See `example-3D`.
 
 ```cpp
 bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition)
@@ -153,7 +185,7 @@ bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::v
 
 #### intersectsSphere
 
-It checks for the intersection between a ray and a sphere.
+It checks for the intersection between a ray and a sphere. See `example-3D`.
 
 ```cpp
 bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal)
@@ -161,7 +193,7 @@ bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec
 
 #### intersectsPrimitive
 
-It checks for the intersection between a ray and an `ofPrimitive`.
+It checks for the intersection between a ray and an `ofPrimitive`. See `example-3D`.
 
 ```cpp
 bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal)
@@ -169,7 +201,7 @@ bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentri
 
 #### intersectsPlane
 
-It checks for the intersection between a ray and an `ofxraycaster::Plane`.
+It checks for the intersection between a ray and an `ofxraycaster::Plane`. See `example-3D`.
 
 ```cpp
 bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
@@ -192,8 +224,8 @@ void ofApp::draw(){
     mesh.draw();
     ray.draw();
 
-    glm::vec3 baricentricCoordinates; // it will store the barycentric coordinate of the triangle hit by the ray
-    glm::vec3 surfaceNormal; // it will store the normal of the surface hit by the ray, if any.
+    glm::vec3 baricentricCoordinates; // stores the barycentric coordinate of the triangle hit by the ray.
+    glm::vec3 surfaceNormal; // stores the normal of the surface hit by the ray.
     bool intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
     
     // is there an intersection between the mesh and the ray?
@@ -213,28 +245,10 @@ void ofApp::draw(){
 }
 ```
 
-When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`
+When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`.
 
 ```
 bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
 ```
-
-## Screenshots from examples
-
-*multiple rays*
-
-![img](img/example-multiple-rays.png )
-
-*segment intersection*
-
-![img](img/example-segment-intersection.png)
-
-*polyline intersection*
-
-![img](img/example-polyline-intersection.png)
-
-*3D intersections with plane, triangle and 3D primitives*
-
-![img](img/example-3d.png )
 
                             
