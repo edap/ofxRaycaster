@@ -19,20 +19,25 @@
 This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh.
 
 <a name="how-to"/>
+
 ## How to use it:
+
+</a>
+
 Download this addon in your `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
 In your project, add at the top of your `ofApp.h` file
 
 ```cpp
 #include "ofxRaycaster.h"
 ```
-Now you are ready to use rays. To get started using a 2D ray in your project, declare a `ray` variable in your `ofApp.h` header file:
+To get started using a 2D ray in your project, declare a `ray` variable in your `ofApp.h` header file:
 
 ```cpp
 ofxraycaster::Ray2D ray;
 ```
 
-If you want to get your hands dirty with 3D rays, use instead of a 2D ray, a 3D one.
+If you want to use a 3D ray, declare the ray like this.
+
 ```cpp
 ofxraycaster::Ray ray;
 ```
