@@ -172,13 +172,39 @@ bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
 
 #### intersectsMesh
 
-![img](img/mesh-intersection.gif )
+Check the intersection between a ray and a mesh. See `example-mesh-intersection`.
 
-Check the intersection between a ray and a mesh. When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. `example-mesh-intersection`
 
 ```
 bool intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
 ```
+
+Example:
+
+```cpp
+void ofApp::draw(){
+    cam.begin();
+    mesh.draw();
+    ray.draw();
+    intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
+    // is there an intersection between the mesh and the ray?
+    if (intersects) {
+        auto intersection =
+            ray.getOrigin() + ray.getDirection() * baricentricCoordinates.z;
+        // draw the ray hitting the mesh
+        ofDrawLine(ray.getOrigin(), intersection);
+        // draw the intersection point
+        ofDrawSphere(intersection, 5);
+
+        // draw the reflected light
+        auto reflLight = glm::reflect(ray.getDirection(), surfaceNormal);
+        ofDrawLine(intersection, intersection + 100 * reflLight);
+    }
+    cam.end();
+}
+```
+
+When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`
 
 ```
 bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
