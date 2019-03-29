@@ -87,10 +87,9 @@ It draws a red circle indicating the position and a blue line indicating the dir
 
 ## 2D intersection methods:
 
-| | |
+| `example-polyline-intersection` | `example-segment-intersection`  |
 |     :---:      |      :---:    |
-|   ![img](img/polyline.gif )   | ![img](img/segment.gif )    |
-| `example-polyline-intersection`       | `example-segment-intersection`      |
+|   ![img](img/polyline.gif )   | ![img](img/segment.gif )    | 
 
 
 #### intersectsPolyline
