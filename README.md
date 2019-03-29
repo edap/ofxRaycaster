@@ -5,7 +5,7 @@
 ![img](img/screenshot.png)
 
 
-This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check for intersection with ofPrimitives, ofPolylines, segments, Plane etc ...
+This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh.
 
 ## How to use it:
 Download this addon in your `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
