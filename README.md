@@ -30,7 +30,7 @@ ofxraycaster::Ray ray;
 #### setup
 
 ```cpp
-void setup(T _origin, T _direction)
+void setup(glm::vec2 origin, glm::vec2 direction)
 ```
 it sets the origin and direction of a ray. For example, for a 2D ray:
 
@@ -61,7 +61,7 @@ ray.getDirection(); // returns glm::vec2(1,0)
 #### setOrigin
 
 ```cpp
-void setOrigin(glm::vec2 _origin);
+void setOrigin(glm::vec3 origin);
 ```
 
 It sets the origin of the ray;
