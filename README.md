@@ -2,11 +2,20 @@
 
 [![Build status](https://travis-ci.org/edap/ofxRaycaster.svg?branch=master)](https://travis-ci.org/edap/ofxRaycaster)
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
+
+##### Table of Contents  
+[How to use it](#how-to)  
+[Methods for 2D and 3D rays](#generics)
+[2D Intersection Methods](#2d-intersections) 
+[3D Intersection Methods](#3d-intersections)
+   
+
 ![img](img/screenshot.png)
 
 
 This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh.
 
+<a name="how-to"/>
 ## How to use it:
 Download this addon in your `addons` folder. Create a new project with the project generator and add as addon `ofxRaycaster`.
 In your project, add at the top of your `ofApp.h` file
@@ -25,6 +34,7 @@ If you want to get your hands dirty with 3D rays, use instead of a 2D ray, a 3D 
 ofxraycaster::Ray ray;
 ```
 
+<a name="generics"/>
 ## Generic methods, for both 2D and 3D rays:
 
 #### setup
@@ -82,9 +92,8 @@ void draw(float radius = 20.);
 
 It draws a red circle indicating the position and a blue line indicating the direction, useful when debugging. It accepts a parameter to scale the dimension of the line representing the direction.
 
-
-        
-
+       
+<a name="2d-intersections"/>
 ## 2D intersection methods:
 
 | `example-polyline-intersection` | `example-segment-intersection`  |
@@ -138,6 +147,7 @@ if (ray.intersectsSegment(a, b, distance)) {
 }
 ```
 
+<a name="3d-intersections"/>
 ## 3D intersection methods:
 
 
