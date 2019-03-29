@@ -4,9 +4,12 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
 
 ##### Table of Contents  
-[How to use it](#how-to)  
+[How to use it](#how-to)
+
 [Methods for 2D and 3D rays](#generics)
+
 [2D Intersection Methods](#2d-intersections) 
+
 [3D Intersection Methods](#3d-intersections)
    
 
@@ -35,7 +38,10 @@ ofxraycaster::Ray ray;
 ```
 
 <a name="generics"/>
+
 ## Generic methods, for both 2D and 3D rays:
+
+</a>
 
 #### setup
 
@@ -94,7 +100,10 @@ It draws a red circle indicating the position and a blue line indicating the dir
 
        
 <a name="2d-intersections"/>
+
 ## 2D intersection methods:
+
+</a>
 
 | `example-polyline-intersection` | `example-segment-intersection`  |
 |     :---:      |      :---:    |
@@ -148,7 +157,10 @@ if (ray.intersectsSegment(a, b, distance)) {
 ```
 
 <a name="3d-intersections"/>
+
 ## 3D intersection methods:
+
+</a>
 
 
 | `example-multiple-rays` | `example-mesh-intersection` | `example-3D` |
