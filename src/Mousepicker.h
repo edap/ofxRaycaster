@@ -3,13 +3,12 @@
 #include "Ray.h"
 
 namespace ofxraycaster {
-    class Raycaster {
+    class Mousepicker {
     public:
-        Raycaster(){};
-        Raycaster(const glm::vec3 _origin, const glm::vec3 _direction, const float near, const float far);
-        void set(const glm::vec3 _origin, const glm::vec3 _direction);
+        Mousepicker(){};
         void setFromCamera(const glm::vec2 coords, const ofCamera camera);
-        void draw();
+        void draw(const float radius = 20);
+        Ray& getRay();
 
     private:
         Ray ray;
