@@ -262,8 +262,6 @@ bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  
 |   ![img](img/mousepicker.gif )| 
 
 
-See example `example-mousepicker`
-
 
 #### setFromCamera
 
@@ -271,15 +269,15 @@ See example `example-mousepicker`
 void setFromCamera(const glm::vec2 coords, const ofCamera camera);
 ```
 
-Set the origin and the direction of the ray giving as argument an `ofCamera` and the mouse coordinates.
+Set the origin and the direction of the ray giving as argument an `ofCamera` and the mouse coordinates. See example `example-mousepicker`.
 
 #### draw
 
 ```cpp
-void setFromCamera(const glm::vec2 coords, const ofCamera camera);
+void draw(const float radius = 20);
 ```
 
-Draw a sphere under the mouse, usefull for debugging. 
+Draw a sphere under the mouse. 
 
 #### getRay
 
