@@ -11,6 +11,8 @@
 [2D Intersection Methods](#2d-intersections) 
 
 [3D Intersection Methods](#3d-intersections)
+
+[Mouse Picker](#mousepicker)
    
 
 ![img](img/screenshot.png)
@@ -250,5 +252,44 @@ When a `glm::mat4` containing the transformation matrix of the mesh is given as 
 ```
 bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
 ```
+
+<a name="mousepicker"/>
+
+## Mousepicker:
+
+| `example-mousepicker` |
+|     :---:      |
+|   ![img](img/mousepicker.gif )| 
+
+
+See example `example-mousepicker`
+
+
+#### setFromCamera
+
+```cpp
+void setFromCamera(const glm::vec2 coords, const ofCamera camera);
+```
+
+Set the origin and the direction of the ray giving as argument an `ofCamera` and the mouse coordinates.
+
+#### draw
+
+```cpp
+void setFromCamera(const glm::vec2 coords, const ofCamera camera);
+```
+
+Draw a sphere under the mouse, usefull for debugging. 
+
+#### getRay
+
+```cpp
+Ray& getRay();
+```
+
+Return the 3D ray that from the camera points towards the mouse.
+
+
+</a>
 
                             
