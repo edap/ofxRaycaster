@@ -12,7 +12,7 @@ ofxraycaster::Ray& ofxraycaster::Mousepicker::getRay(){
 }
 
 // http://antongerdelan.net/opengl/raycasting.html
-void ofxraycaster::Mousepicker::setFromCamera(const glm::vec2 mouse, const ofCamera camera){
+void ofxraycaster::Mousepicker::setFromCamera(const glm::vec2& mouse, const ofCamera& camera){
     // set far and clip plane. Not used atm
     // but will come later with orthographic camera support(TODO)
     far = camera.getFarClip();
