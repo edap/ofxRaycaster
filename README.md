@@ -55,7 +55,7 @@ ofxraycaster::Ray ray;
 ```cpp
 void setup(glm::vec2 origin, glm::vec2 direction)
 ```
-it sets the origin and direction of a ray. For example, for a 2D ray:
+Set the origin and direction of a ray. For example, for a 2D ray:
 
 ```
 ray.setup(glm::vec2(10,5), glm::vec2(1,0));
@@ -66,7 +66,7 @@ ray.setup(glm::vec2(10,5), glm::vec2(1,0));
 ```cpp
 glm::vec2 getOrigin();
 ```
-It returns the origin of the vector. For example, for the 2D ray previously greated:
+Return the origin of the vector. For example, for the 2D ray previously greated:
 ```cpp
 ray.getOrigin(); // returns glm::vec2(10,5)
 ```
@@ -76,7 +76,7 @@ ray.getOrigin(); // returns glm::vec2(10,5)
 ```cpp
 glm::vec2 getDirection();
 ```
-It returns the direction of the vector. For example, for the 2D ray previously greated:
+Return the direction of the vector. For example, for the 2D ray previously greated:
 ```cpp
 ray.getDirection(); // returns glm::vec2(1,0)
 ```
@@ -87,7 +87,7 @@ ray.getDirection(); // returns glm::vec2(1,0)
 void setOrigin(glm::vec3 origin);
 ```
 
-It sets the origin of the ray;
+Set the origin of the ray;
 
 #### setDirection
 
@@ -95,7 +95,7 @@ It sets the origin of the ray;
 void setDirection(glm::vec2 _origin);
 ```
 
-It sets the direction of the ray;
+Set the direction of the ray;
 
 #### draw
 
@@ -103,7 +103,7 @@ It sets the direction of the ray;
 void draw(float radius = 20.);
 ```
 
-It draws a red circle indicating the position and a blue line indicating the direction, useful when debugging. It accepts a parameter to scale the dimension of the line representing the direction.
+Draw a red circle indicating the position and a blue line indicating the direction, useful when debugging. It accepts a parameter to scale the dimension of the line representing the direction.
 
        
 <a name="2d-intersections"/>
@@ -124,7 +124,7 @@ See example `example-polyline-intersection`
 bool intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal);
 ```
 
-It checks for the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hit by the ray.
+Check the intersection between a ray and an `ofPolyline`. If there is an intersection, it stores in `distance` and `surfaceNormal` respectively the distance from the origin to the intersection point, and a 2D normal of the segment of the polyline hit by the ray.
 
 ```cpp
 ofxraycaster::Ray2D ray;
@@ -146,7 +146,7 @@ See example `example-segment-intersection`
 bool intersectsSegment(const glm::vec2 & a, const glm::vec2 & b, float & distance)
 ```
 
-It checks for the intersection between a ray and a segment. If there is an intersection, it stores in the variable `distance` the distance from the origin to the intersection point.
+Check the intersection between a ray and a segment. If there is an intersection, it stores in the variable `distance` the distance from the origin to the intersection point.
 
 
 ```cpp
@@ -178,7 +178,7 @@ if (ray.intersectsSegment(a, b, distance)) {
 
 #### intersectsTriangle
 
-It checks for the intersection between a ray and a triangle. See `example-3D`.
+Check the intersection between a ray and a triangle. See `example-3D`.
 
 ```cpp
 bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition)
@@ -187,7 +187,7 @@ bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::v
 
 #### intersectsSphere
 
-It checks for the intersection between a ray and a sphere. See `example-3D`.
+Check the intersection between a ray and a sphere. See `example-3D`.
 
 ```cpp
 bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal)
@@ -195,7 +195,7 @@ bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec
 
 #### intersectsPrimitive
 
-It checks for the intersection between a ray and an `ofPrimitive`. See `example-3D`.
+Check the intersection between a ray and an `ofPrimitive`. See `example-3D`.
 
 ```cpp
 bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal)
@@ -203,7 +203,7 @@ bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentri
 
 #### intersectsPlane
 
-It checks for the intersection between a ray and an `ofxraycaster::Plane`. See `example-3D`.
+Check the intersection between a ray and an `ofxraycaster::Plane`. See `example-3D`.
 
 ```cpp
 bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
