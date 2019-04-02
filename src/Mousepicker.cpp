@@ -3,7 +3,7 @@
 void ofxraycaster::Mousepicker::draw(const float radius){
     ofPushStyle();
     ofSetColor(255,0,0);
-    ofDrawSphere(ray.getOrigin() + ray.getDirection() * far, radius);
+    ofDrawSphere(ray.getOrigin() + ray.getDirection() * farClip, radius);
     ofPopStyle();
 }
 
@@ -15,8 +15,8 @@ ofxraycaster::Ray& ofxraycaster::Mousepicker::getRay(){
 void ofxraycaster::Mousepicker::setFromCamera(const glm::vec2& mouse, const ofCamera& camera){
     // set far and clip plane. Not used atm
     // but will come later with orthographic camera support(TODO)
-    far = camera.getFarClip();
-    near = camera.getNearClip();
+    farClip = camera.getFarClip();
+    nearClip = camera.getNearClip();
 
     glm::vec3 screenMouse (mouse.x,mouse.y,0);
     auto worldMouse = camera.screenToWorld(screenMouse);
