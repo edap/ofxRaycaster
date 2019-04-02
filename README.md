@@ -285,7 +285,7 @@ Draw a sphere under the mouse.
 Ray& getRay();
 ```
 
-Return the 3D ray that goes from the camera points towards the mouse.
+Return the 3D ray that goes from the camera towards the mouse.
 
 
 </a>
