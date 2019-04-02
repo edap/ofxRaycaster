@@ -1,11 +1,11 @@
 #pragma once
-#include "ofMain.h" // TODO how to include just glm?
+#include "ofMain.h"
 
 namespace ofxraycaster {
 
     class Plane {
     public:
-        Plane(){}
+        Plane(){};
         Plane(glm::vec3 _orig, glm::vec3 _normal);
 
         void draw(float radius = 20.);
@@ -19,6 +19,5 @@ namespace ofxraycaster {
     private:
         glm::vec3 orig;
         glm::vec3 normal;
-        
     };
 }
