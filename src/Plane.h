@@ -2,7 +2,6 @@
 #include "ofMain.h"
 
 namespace ofxraycaster {
-
     class Plane {
     public:
         Plane(){};

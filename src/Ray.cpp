@@ -9,7 +9,7 @@
 ofxraycaster::Ray::Ray(glm::vec3 _origin, glm::vec3 _direction){
     origin = _origin;
     direction = glm::normalize(_direction);
-};
+}
 
 /// \brief it sets the origin and direction of a ray. For example,
 /// for a 2D ray:
@@ -21,24 +21,24 @@ ofxraycaster::Ray::Ray(glm::vec3 _origin, glm::vec3 _direction){
 void ofxraycaster::Ray::setup(glm::vec3 _origin, glm::vec3 _direction){
     origin = _origin;
     direction = glm::normalize(_direction);
-};
+}
 
 /// \brief it returns the origin of the ray,
 const glm::vec3 ofxraycaster::Ray::getOrigin() {
     return origin;
-};
+}
 
 void ofxraycaster::Ray::setOrigin(glm::vec3 _origin){
     origin = _origin;
-};
+}
 
 const glm::vec3 ofxraycaster::Ray::getDirection() {
     return direction;
-};
+}
 
 void ofxraycaster::Ray::setDirection(glm::vec3 _direction){
     direction = _direction;
-};
+}
 
 void ofxraycaster::Ray::draw(float radius){
     ofPushStyle();
@@ -52,16 +52,13 @@ void ofxraycaster::Ray::draw(float radius){
     ofDrawLine(origin,end);
     ofSetLineWidth(1);
     ofPopStyle();
-};
-
-
+}
 
 bool ofxraycaster::Ray::intersectsPlane(ofxraycaster::Plane plane, float & distance){
     return glm::intersectRayPlane(origin, direction,
                                   plane.getOrigin(), plane.getNormal(),
                                   distance);
-};
-
+}
 
 bool ofxraycaster::Ray::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition){
 
@@ -71,8 +68,6 @@ bool ofxraycaster::Ray::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 co
 bool ofxraycaster::Ray::intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal){
 
     return glm::intersectRaySphere(origin, direction, _center, _radius, _position, _normal);
-
-
 }
 
 bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal) {
@@ -104,7 +99,7 @@ bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm
     }
     baricentricCoords.z = distanceToTheClosestSurface;
     return found;
-};
+}
 
 bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal){
 
@@ -159,7 +154,7 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricent
     }
     baricentricCoords.z = distanceToTheClosestSurface;
     return found;
-};
+}
 
 bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix, glm::vec3 & baricentricCoords, glm::vec3 & intNormal){
 
@@ -213,7 +208,4 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& tran
     }
     baricentricCoords.z = distanceToTheClosestSurface;
     return found;
-};
-
-
-
+}

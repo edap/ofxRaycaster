@@ -25,4 +25,4 @@ void ofxraycaster::Mousepicker::setFromCamera(const glm::vec2& mouse, const ofCa
     auto worldMouseDirection = worldMouseEnd - worldMouse;
 
     ray.setup(camera.getGlobalPosition(), glm::normalize(worldMouseDirection));
-};
+}

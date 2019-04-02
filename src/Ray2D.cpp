@@ -3,7 +3,7 @@
 ofxraycaster::Ray2D::Ray2D(glm::vec2 _origin, glm::vec2 _direction){
   origin = _origin;
   direction = glm::normalize(_direction);
-};
+}
 
 /// \brief it sets the origin and direction of a ray. For example,
 /// for a 2D ray:
@@ -15,24 +15,24 @@ ofxraycaster::Ray2D::Ray2D(glm::vec2 _origin, glm::vec2 _direction){
 void ofxraycaster::Ray2D::setup(glm::vec2 _origin, glm::vec2 _direction){
   origin = _origin;
   direction = glm::normalize(_direction);
-};
+}
 
 /// \brief it returns the origin of the ray,
 const glm::vec2 ofxraycaster::Ray2D::getOrigin(){
   return origin;
-};
+}
 
 void ofxraycaster::Ray2D::setOrigin(glm::vec2 _origin){
   origin = _origin;
-};
+}
 
 const glm::vec2 ofxraycaster::Ray2D::getDirection(){
   return direction;
-};
+}
 
 void ofxraycaster::Ray2D::setDirection(glm::vec2 _direction){
   direction = _direction;
-};
+}
 
 void ofxraycaster::Ray2D::draw(float radius){
     ofPushStyle();
@@ -46,9 +46,7 @@ void ofxraycaster::Ray2D::draw(float radius){
     ofDrawLine(origin,end);
     ofSetLineWidth(1);
     ofPopStyle();
-};
-
-
+}
 
 bool ofxraycaster::Ray2D::intersectsSegment(const glm::vec2 & a, const glm::vec2 & b, float & distance){
   bool intersects = false;
@@ -73,8 +71,7 @@ bool ofxraycaster::Ray2D::intersectsSegment(const glm::vec2 & a, const glm::vec2
   }
 
   return intersects;
-
-};
+}
 
 bool ofxraycaster::Ray2D::intersectsPolyline(const ofPolyline & poly, float & distance, glm::vec2& surfaceNormal){
 
@@ -106,13 +103,7 @@ bool ofxraycaster::Ray2D::intersectsPolyline(const ofPolyline & poly, float & di
               distance = tmpDistance;
           }
       }
-
   }
 
   return intersects;
-};
-
-
-
-
-  
+}

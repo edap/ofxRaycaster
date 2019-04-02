@@ -37,10 +37,8 @@ namespace ofxraycaster {
         bool intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
         bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
 
-
     private:
         glm::vec3 origin;
         glm::vec3 direction;
     };
 }
-
