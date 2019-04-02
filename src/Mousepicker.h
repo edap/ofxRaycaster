@@ -5,17 +5,14 @@
 namespace ofxraycaster {
     class Mousepicker {
     public:
-        Mousepicker(){
-            near=0.0f;
-            far=0.0f;
-        };
+        Mousepicker(){};
         void setFromCamera(const glm::vec2& coords, const ofCamera& camera);
         void draw(const float radius = 20.0f);
         Ray& getRay();
 
     private:
         Ray ray;
-        float near;
-        float far;
+        float near{0.0f};
+        float far{0.0f};
     };
 }
