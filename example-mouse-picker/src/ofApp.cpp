@@ -43,7 +43,7 @@ void ofApp::draw(){
 
     // iterates through all the primitives and find the closest one.
     for (unsigned int i = 0; i<icospheres.size(); i++) {
-        auto ico = icospheres.at(i);
+        auto & ico = icospheres.at(i);
         ico.draw();
 
         bool intersects = mousepicker.getRay().intersectsPrimitive(ico,  baricentricCoordinates, surfaceNormal);
