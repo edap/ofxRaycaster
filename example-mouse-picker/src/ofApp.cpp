@@ -14,8 +14,7 @@ void ofApp::setup(){
     material.setAmbientColor(col4);
 
     for (unsigned int i = 0; i < 140; i++) {
-        ofIcoSpherePrimitive ico;
-        ico.set(50,1);
+        ofIcoSpherePrimitive ico(50, 1);
         ico.setPosition(ofRandom(-ofGetWidth()/2.0f, ofGetWidth()/2.0f),
                         ofRandom(ofGetHeight()/2.0f, -ofGetHeight()/2.0f),
                         ofRandom(400, -400));
