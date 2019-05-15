@@ -16,8 +16,8 @@ void ofApp::setup(){
     for (unsigned int i = 0; i < 140; i++) {
         ofIcoSpherePrimitive ico;
         ico.set(50,1);
-        ico.setPosition(ofRandom(-ofGetWidth()/2.0, ofGetWidth()/2.0),
-                        ofRandom(ofGetHeight()/2.0, -ofGetHeight()/2.0),
+        ico.setPosition(ofRandom(-ofGetWidth()/2.0f, ofGetWidth()/2.0f),
+                        ofRandom(ofGetHeight()/2.0f, -ofGetHeight()/2.0f),
                         ofRandom(400, -400));
         icospheres.push_back(ico);
     }
@@ -39,7 +39,7 @@ void ofApp::draw(){
     glm::vec3 baricentricCoordinates;
     glm::vec3 surfaceNormal;
     bool found = false;
-    unsigned int indexIntersectedPrimitive;
+    unsigned int indexIntersectedPrimitive = 0;
     float distanceToClosestIntersection = numeric_limits<float>::max();
 
     // iterates through all the primitives and find the closest one.
