@@ -60,9 +60,8 @@ bool ofxraycaster::Ray::intersectsPlane(ofxraycaster::Plane plane, float & dista
                                   distance);
 }
 
-bool ofxraycaster::Ray::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition){
-
-    return glm::intersectRayTriangle(origin, direction, vert0, vert1, vert2, baryPosition);
+bool ofxraycaster::Ray::intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec2 & baryPosition, float &distance){
+    return glm::intersectRayTriangle(origin, direction, vert0, vert1, vert2, baryPosition, distance);
 }
 
 bool ofxraycaster::Ray::intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal){
@@ -70,7 +69,7 @@ bool ofxraycaster::Ray::intersectsSphere(const glm::vec3 & _center, const float 
     return glm::intersectRaySphere(origin, direction, _center, _radius, _position, _normal);
 }
 
-bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal) {
+bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal) {
     // at the beginning, no intersection is found and the distance to the closest surface
     // is set to an high value;
     bool found = false;
@@ -81,14 +80,15 @@ bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm
                                                       glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(0), 1.f)),
                                                       glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(1), 1.f)),
                                                       glm::vec3(primitive.getGlobalTransformMatrix() * glm::vec4(face.getVertex(2), 1.f)),
-                                                      baricentricCoords);
+                                                      baricentricCoords,
+                                                      distance);
         // when an intersection is found, it updates the distanceToTheClosestSurface value
         // this value is used to order the new intersections, if a new intersection with a smaller baricenter.z
         // value is found, this one will become the new intersection
         if (intersection) {
-            if (baricentricCoords.z < distanceToTheClosestSurface) {
+            if (distance < distanceToTheClosestSurface) {
                 found = true;
-                distanceToTheClosestSurface = baricentricCoords.z;
+                distanceToTheClosestSurface = distance;
 
                 intNormal = glm::normalize(
                    glm::vec3(primitive.getGlobalTransformMatrix() *
@@ -97,11 +97,11 @@ bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm
             }
         }
     }
-    baricentricCoords.z = distanceToTheClosestSurface;
+    distance = distanceToTheClosestSurface;
     return found;
 }
 
-bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal){
+bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal){
 
     // Guards. intersectsMesh only works with indexed geometries of
     // traingles
@@ -130,16 +130,17 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricent
                               mesh.getVertex(mesh.getIndex(i)),
                               mesh.getVertex(mesh.getIndex(i+1)),
                               mesh.getVertex(mesh.getIndex(i+2)),
-                              baricentricCoords
+                              baricentricCoords,
+                              distance
         );
 
         // when an intersection is found, it updates the distanceToTheClosestSurface value
         // this value is used to order the new intersections, if a new intersection with a smaller baricenter.z
         // value is found, this one will become the new intersection
         if (intersection) {
-            if (baricentricCoords.z < distanceToTheClosestSurface) {
+            if (distance < distanceToTheClosestSurface) {
                 found = true;
-                distanceToTheClosestSurface = baricentricCoords.z;
+                distanceToTheClosestSurface = distance;
 
                 const int ia = mesh.getIndex(i);
                 const int ib = mesh.getIndex(i+1);
@@ -152,11 +153,11 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricent
             }
         }
     }
-    baricentricCoords.z = distanceToTheClosestSurface;
+    distance = distanceToTheClosestSurface;
     return found;
 }
 
-bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix, glm::vec3 & baricentricCoords, glm::vec3 & intNormal){
+bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix, glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal){
 
     // Guards. intersectsMesh only works with indexed geometries of
     // traingles
@@ -185,14 +186,15 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& tran
                               glm::vec3(transformationMatrix * glm::vec4(mesh.getVertex(mesh.getIndex(i)), 1.0f)),
                               glm::vec3(transformationMatrix * glm::vec4(mesh.getVertex(mesh.getIndex(i+1)), 1.0f)),
                               glm::vec3(transformationMatrix * glm::vec4(mesh.getVertex(mesh.getIndex(i+2)), 1.0f)),
-                              baricentricCoords
+                              baricentricCoords,
+                              distance
         );
 
 
         if (intersection) {
-            if (baricentricCoords.z < distanceToTheClosestSurface) {
+            if (distance < distanceToTheClosestSurface) {
                 found = true;
-                distanceToTheClosestSurface = baricentricCoords.z;
+                distanceToTheClosestSurface = distance;
 
                 const int ia = mesh.getIndex(i);
                 const int ib = mesh.getIndex(i+1);
@@ -206,6 +208,6 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& tran
             }
         }
     }
-    baricentricCoords.z = distanceToTheClosestSurface;
+    distance = distanceToTheClosestSurface;
     return found;
 }

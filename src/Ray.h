@@ -1,6 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "Plane.h"
+#include "glm/gtx/intersect.hpp"
 
 namespace ofxraycaster {
     class Ray {
@@ -31,11 +32,11 @@ namespace ofxraycaster {
         void setDirection(glm::vec3 _direction);
         void draw(float radius = 20.);
         bool intersectsPlane(ofxraycaster::Plane plane, float & distance);
-        bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition);
+        bool intersectsTriangle(glm::vec3 const &vert0, glm::vec3 const &vert1, glm::vec3 const &vert2, glm::vec2 &baryPosition, float &distance);
         bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec3& _position, glm::vec3 & _normal);
-        bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
-        bool intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
-        bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
+        bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal);
+        bool intersectsMesh(const ofMesh& mesh,  glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal);
+        bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec2 & baricentricCoords, float &distance, glm::vec3 & intNormal);
 
     private:
         glm::vec3 origin;

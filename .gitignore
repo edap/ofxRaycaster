@@ -16,3 +16,4 @@ RemoteSystemsTempFiles/
 .project
 .settings
 *.qbs.user
+build-example-segment-intersection-Desktop-Debug/
