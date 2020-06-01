@@ -18,7 +18,6 @@ void ofApp::setup(){
 
 void ofApp::update(){;
     float time = ofGetElapsedTimef();
-    float sinedTime = sin(time * 1.3);
     float cosedTime = cos(ofGetElapsedTimef()* 1.3) * 0.5;
     ray.setDirection(glm::normalize(glm::vec3(-1, cosedTime, 0)));
 
