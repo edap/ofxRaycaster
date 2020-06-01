@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    ray.setup(glm::vec3(350, 0, 0), glm::vec3(-1, 0, 0));
+    ray.setup(glm::vec3(350, 0, 100), glm::vec3(-1, 0, 0));
 
     icosphere.set(200, 1);
     mesh.append(icosphere.getMesh());
@@ -32,7 +32,8 @@ void ofApp::draw(){
     light.draw();
     ray.draw(5);
 
-    glm::vec3 baricentricCoordinates;
+    glm::vec2 baricentricCoordinates;
+    float distance;
     glm::vec3 intNormal;
     bool intersects;
 
@@ -46,6 +47,7 @@ void ofApp::draw(){
         intersects = ray.intersectsMesh(mesh,
                                         node.getGlobalTransformMatrix(),
                                         baricentricCoordinates,
+                                        distance,
                                         intNormal);
         node.restoreTransformGL();
     } else {
@@ -54,7 +56,7 @@ void ofApp::draw(){
         material.end();
         ofSetColor(col5);
         mesh.drawWireframe();
-        intersects = ray.intersectsMesh(mesh,baricentricCoordinates,intNormal);
+        intersects = ray.intersectsMesh(mesh,baricentricCoordinates,distance,intNormal);
     }
 
 
@@ -64,7 +66,7 @@ void ofApp::draw(){
         ofPushStyle();
 
         auto intersection =
-            ray.getOrigin() + ray.getDirection() * baricentricCoordinates.z;
+            ray.getOrigin() + ray.getDirection() * distance;
 
         // draw the ray that hits the icosphere
         ofSetColor(col1);

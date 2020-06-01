@@ -17,3 +17,7 @@ RemoteSystemsTempFiles/
 .settings
 *.qbs.user
 build-example-segment-intersection-Desktop-Debug/
+build-example-3d-Desktop-Debug/
+build-example-mesh-intersection-Desktop-Debug/
+build-example-mouse-picker-Desktop-Debug/
+build-example-multiple-rays-Desktop-Debug

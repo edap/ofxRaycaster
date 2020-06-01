@@ -57,12 +57,13 @@ void ofApp::draw(){
         material.end();
     }
 
-    glm::vec3 baryCoord;
+    glm::vec2 baryCoord;
+    float distance;
     glm::vec3 intersectionNormal;
     for (auto ray:rays) {
 
-        if (ray.intersectsPrimitive(box, baryCoord, intersectionNormal)) {
-            auto intersection = ray.getOrigin() + ray.getDirection() * baryCoord.z;
+        if (ray.intersectsPrimitive(box, baryCoord, distance, intersectionNormal)) {
+            auto intersection = ray.getOrigin() + ray.getDirection() * distance;
 
             // intersections points
             ofPushStyle();

@@ -35,7 +35,8 @@ void ofApp::draw(){
 
     material.begin();
 
-    glm::vec3 baricentricCoordinates;
+    glm::vec2 baricentricCoordinates;
+    float distance;
     glm::vec3 surfaceNormal;
     bool found = false;
     unsigned int indexIntersectedPrimitive = 0;
@@ -46,10 +47,10 @@ void ofApp::draw(){
         auto & ico = icospheres.at(i);
         ico.draw();
 
-        bool intersects = mousepicker.getRay().intersectsPrimitive(ico,  baricentricCoordinates, surfaceNormal);
-        if (intersects && (baricentricCoordinates.z < distanceToClosestIntersection)) {
+        bool intersects = mousepicker.getRay().intersectsPrimitive(ico,  baricentricCoordinates, distance, surfaceNormal);
+        if (intersects && (distance < distanceToClosestIntersection)) {
             found = true;
-            distanceToClosestIntersection = baricentricCoordinates.z;
+            distanceToClosestIntersection = distance;
             indexIntersectedPrimitive = i;
         }
 

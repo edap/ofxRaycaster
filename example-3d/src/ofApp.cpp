@@ -140,7 +140,8 @@ void ofApp::drawPlaneIntersection(){
 };
 
 void ofApp::drawTriangleIntersection(){
-    glm::vec3 baryCoordinates;
+    glm::vec2 baryCoordinates;
+    float d;
     ofNode v1,v2,v3;
 
     v1.setPosition(-200, -100, 0);
@@ -162,8 +163,8 @@ void ofApp::drawTriangleIntersection(){
     //triangleLookAt.draw();
     material.end();
 
-    if(ray.intersectsTriangle(a,b,c, baryCoordinates)){
-        auto intersection = ray.getOrigin() + ray.getDirection() * baryCoordinates.z;
+    if(ray.intersectsTriangle(a,b,c, baryCoordinates, d)){
+        auto intersection = ray.getOrigin() + ray.getDirection() * d;
         ofPushStyle();
         ofSetColor(col1);
         ofDrawLine(ray.getOrigin(), intersection);
@@ -181,12 +182,12 @@ void ofApp::drawPrimitiveIntersection(){
     box.draw();
     material.end();
 
-    glm::vec3 baricentricCoordinates;
+    glm::vec2 baricentricCoordinates;
+    float dist;
     glm::vec3 surfaceNormal;
-    if(ray.intersectsPrimitive(box, baricentricCoordinates, surfaceNormal)){
+    if(ray.intersectsPrimitive(box, baricentricCoordinates, dist, surfaceNormal)){
 
-        auto intersection = ray.getOrigin() +
-            ray.getDirection() * baricentricCoordinates.z;
+        auto intersection = ray.getOrigin() + ray.getDirection() * dist;
 
         ofPushStyle();
         ofSetColor(col1);
