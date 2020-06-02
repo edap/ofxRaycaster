@@ -3,17 +3,17 @@
 [![Build status](https://travis-ci.org/edap/ofxRaycaster.svg?branch=master)](https://travis-ci.org/edap/ofxRaycaster)
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
 
-##### Table of Contents  
+##### Table of Contents
 [How to use it](#how-to)
 
 [Methods for 2D and 3D rays](#generics)
 
-[2D Intersection Methods](#2d-intersections) 
+[2D Intersection Methods](#2d-intersections)
 
 [3D Intersection Methods](#3d-intersections)
 
 [Mouse Picker](#mousepicker)
-   
+
 
 ![img](img/screenshot.png)
 
@@ -105,7 +105,6 @@ void draw(float radius = 20.);
 
 Draw a red circle indicating the position and a blue line indicating the direction, useful when debugging. It accepts a parameter to scale the dimension of the line representing the direction.
 
-       
 <a name="2d-intersections"/>
 
 ## 2D intersection methods:
@@ -114,7 +113,7 @@ Draw a red circle indicating the position and a blue line indicating the directi
 
 | `example-polyline-intersection` | `example-segment-intersection`  |
 |     :---:      |      :---:    |
-|   ![img](img/polyline.gif )   | ![img](img/segment.gif )    | 
+|   ![img](img/polyline.gif )   | ![img](img/segment.gif )    |
 
 
 #### intersectsPolyline
@@ -181,7 +180,7 @@ if (ray.intersectsSegment(a, b, distance)) {
 Check the intersection between a ray and a triangle. See `example-3D`.
 
 ```cpp
-bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec3 & baryPosition)
+bool intersectsTriangle(glm::vec3 const & vert0, glm::vec3 const & vert1, glm::vec3 const & vert2, glm::vec2 & baryPosition, float & distance)
 ```
 
 
@@ -198,7 +197,7 @@ bool intersectsSphere(const glm::vec3 & _center, const float & _radius, glm::vec
 Check the intersection between a ray and an `ofPrimitive`. See `example-3D`.
 
 ```cpp
-bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal)
+bool intersectsPrimitive(const of3dPrimitive& primitive,  glm::vec2 & baricentricCoords, float & distance, glm::vec3 & intNormal)
 ```
 
 #### intersectsPlane
@@ -215,7 +214,7 @@ Check the intersection between a ray and a mesh. See `example-mesh-intersection`
 
 
 ```
-bool intersectsMesh(const ofMesh& mesh,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
+bool intersectsMesh(const ofMesh& mesh,  glm::vec2 & baricentricCoords, float & distance, glm::vec3 & intNormal);
 ```
 
 Example:
@@ -226,14 +225,15 @@ void ofApp::draw(){
     mesh.draw();
     ray.draw();
 
-    glm::vec3 baricentricCoordinates; // stores the barycentric coordinate of the triangle hit by the ray.
+    glm::vec2 baricentricCoordinates; // stores the barycentric coordinate of the triangle hit by the ray.
+    float distance;
     glm::vec3 surfaceNormal; // stores the normal of the surface hit by the ray.
-    bool intersects = ray.intersectsMesh(mesh, baricentricCoordinates, surfaceNormal);
-    
+    bool intersects = ray.intersectsMesh(mesh, baricentricCoordinates, distance, surfaceNormal);
+
     // is there an intersection between the mesh and the ray?
     if (intersects) {
         auto intersection =
-            ray.getOrigin() + ray.getDirection() * baricentricCoordinates.z;
+            ray.getOrigin() + ray.getDirection() * distance;
         // draw the ray hitting the mesh
         ofDrawLine(ray.getOrigin(), intersection);
         // draw the intersection point
@@ -250,7 +250,7 @@ void ofApp::draw(){
 When a `glm::mat4` containing the transformation matrix of the mesh is given as second argument, it takes the transformation into account. See `example-mesh-intersection`.
 
 ```
-bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec3 & baricentricCoords, glm::vec3 & intNormal);
+bool intersectsMesh(const ofMesh& mesh, const glm::mat4& transformationMatrix,  glm::vec2 & baricentricCoords, float & distance, glm::vec3 & intNormal);
 ```
 
 <a name="mousepicker"/>
@@ -277,7 +277,7 @@ Set the origin and the direction of the ray giving as argument an `ofCamera` and
 void draw(const float radius = 20);
 ```
 
-Draw a sphere under the mouse. 
+Draw a sphere under the mouse.
 
 #### getRay
 
@@ -290,4 +290,3 @@ Return the 3D ray that goes from the camera towards the mouse.
 
 </a>
 
-                            
