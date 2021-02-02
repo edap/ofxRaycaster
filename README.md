@@ -294,12 +294,14 @@ Return the 3D ray that goes from the camera towards the mouse.
 
 
 <a name="showcase"/>
+
 ## Showcase:
+
 </a>
 
 This addon was used in the following projects:
 
-- [Border Tuner / Sintonizador Fronterizo] (https://www.lozano-hemmer.com/border_tuner__sintonizador_fronterizo.php)
+- [Border Tuner / Sintonizador Fronterizo](https://www.lozano-hemmer.com/border_tuner__sintonizador_fronterizo.php)
 
 - [Sphere Packing - Bach](https://www.lozano-hemmer.com/sphere_packing_bach.php)
 
