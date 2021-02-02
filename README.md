@@ -14,6 +14,8 @@
 
 [Mouse Picker](#mousepicker)
 
+[Showcase](#showcase)
+
 
 ![img](img/screenshot.png)
 
@@ -290,3 +292,17 @@ Return the 3D ray that goes from the camera towards the mouse.
 
 </a>
 
+
+<a name="showcase"/>
+## Showcase:
+</a>
+
+This addon was used in the following projects:
+
+- [Border Tuner / Sintonizador Fronterizo] (https://www.lozano-hemmer.com/border_tuner__sintonizador_fronterizo.php)
+
+- [Sphere Packing - Bach](https://www.lozano-hemmer.com/sphere_packing_bach.php)
+
+- [Sun and Moon](http://dominofactory.net/client_works/sun_and_moon.html)
+
+If you want to add your project to this list, please open an issue.
