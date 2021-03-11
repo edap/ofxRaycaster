@@ -3,6 +3,12 @@
 [![Build status](https://travis-ci.org/edap/ofxRaycaster.svg?branch=master)](https://travis-ci.org/edap/ofxRaycaster)
 [![Build status](https://ci.appveyor.com/api/projects/status/p7l03tb6m1ctxbju?svg=true)](https://ci.appveyor.com/project/edap/ofxraycaster)
 
+## Donation:
+
+If you find this project useful please consider a donation.
+
+[![paypal](https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gi)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DUA4FYWCMFDSG)
+
 ##### Table of Contents
 [How to use it](#how-to)
 
@@ -310,14 +316,4 @@ This addon was used in the following projects:
 If you want to add your project to this list, please open an issue.
 
 
-## Donation:
 
-If you find this project useful please consider a donation.
-
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="hosted_button_id" value="DUA4FYWCMFDSG" />
-<input type="image" src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_DE/i/scr/pixel.gif" width="1" height="1" />
-</form>
-
-[![paypal](https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gi)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DUA4FYWCMFDSG)
