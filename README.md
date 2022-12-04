@@ -26,7 +26,7 @@ If you find this project useful please consider a donation.
 ![img](img/screenshot.png)
 
 
-This addon contains a definition of a ray in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh.
+This addon contains a c++ class to works with rays in 2D and 3D dimension, and it includes methods to check the intersection with segments, spheres, triangles, planes, ofPrimitive, ofPolyline and ofMesh, wrapping the methods already presents in the [glm](https://github.com/g-truc/glm) library, the default math library oin OF.
 
 <a name="how-to"/>
 
