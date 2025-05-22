@@ -73,7 +73,7 @@ bool ofxraycaster::Ray::intersectsPrimitive(const of3dPrimitive& primitive,  glm
     // at the beginning, no intersection is found and the distance to the closest surface
     // is set to an high value;
     bool found = false;
-    float distanceToTheClosestSurface = numeric_limits<float>::max();
+    float distanceToTheClosestSurface = std::numeric_limits<float>::max();
     for (const ofMeshFace& face : primitive.getMesh().getUniqueFaces()) {
         bool intersection = glm::intersectRayTriangle(
                                                       origin, direction,
@@ -123,7 +123,7 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, glm::vec2 & baricentr
     // at the beginning, no intersection is found and the distance
     // to the closest surface is set to an high value;
     bool found = false;
-    float distanceToTheClosestSurface = numeric_limits<float>::max();
+    float distanceToTheClosestSurface = std::numeric_limits<float>::max();
     for (unsigned int i = 0; i< mesh.getNumIndices(); i+=3) {
         bool intersection = glm::intersectRayTriangle(
                               origin, direction,
@@ -179,7 +179,7 @@ bool ofxraycaster::Ray::intersectsMesh(const ofMesh& mesh, const glm::mat4& tran
     // at the beginning, no intersection is found and the distance
     // to the closest surface is set to an high value;
     bool found = false;
-    float distanceToTheClosestSurface = numeric_limits<float>::max();
+    float distanceToTheClosestSurface = std::numeric_limits<float>::max();
     for (unsigned int i = 0; i< mesh.getNumIndices(); i+=3) {
         bool intersection = glm::intersectRayTriangle(
                               origin, direction,
